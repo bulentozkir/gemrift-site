@@ -11,15 +11,16 @@
   <meta property="og:image" content="https://bulentozkir.github.io/gemrift-site/assets/gameplay-cavern.jpg">
   <title>Gemrift — A little deeper. A little braver.</title>
   <link rel="icon" href="assets/gem.svg" type="image/svg+xml">
-  <script>
-    (() => {
-      const param = new URLSearchParams(window.location.search).get("scoutTheme");
-      const theme = param === "light" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", theme);
-    })();
-  </script>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+    <link rel="preload" href="assets/gameplay-cavern.jpg" as="image">
+    <script>
+      (() => {
+        const param = new URLSearchParams(window.location.search).get("scoutTheme");
+        const theme = param === "light" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -46,7 +47,7 @@
           <button class="button" type="button" data-watch><span class="play-icon" aria-hidden="true">▶</span> Watch gameplay <span aria-hidden="true">↗</span></button>
           <a class="text-link" href="#discover">Discover the game <span aria-hidden="true">↓</span></a>
         </div>
-        <div class="hero-footnote"><span class="tiny-gem" aria-hidden="true">◆</span> Real caves. Real gameplay. No cinematic stand-ins.</div>
+        <div class="hero-footnote"><span class="tiny-gem" aria-hidden="true">◆</span> Real caves. Real gameplay. No cinematic stand-ins. <span class="hero-gems" aria-hidden="true">✦ ✦ ✦</span></div>
       </div>
       <div class="hero-art">
         <div class="cave-frame-heading"><span class="status-dot"></span><span>LIVE FROM THE UNDERGROUND</span><span>REC / 001</span></div>
@@ -56,10 +57,10 @@
     </section>
 
     <div class="ticker" aria-label="Explore. Collect. Think fast. Dig deeper.">
-      <div class="section-width ticker-inner"><span>FOLLOW YOUR CURIOSITY</span><b aria-hidden="true">✦</b><span>MAKE EVERY MOVE COUNT</span><b aria-hidden="true">✦</b><span>FIND YOUR NEXT GEM</span><b aria-hidden="true">✦</b><span>DIG A LITTLE DEEPER</span><b aria-hidden="true">✦</b></div>
+          <div class="section-width ticker-inner"><span>FOLLOW YOUR CURIOSITY</span><b aria-hidden="true">✦</b><span>MAKE EVERY MOVE COUNT</span><b aria-hidden="true">✦</b><span>FIND YOUR NEXT GEM</span><b aria-hidden="true">✦</b><span>DIG A LITTLE DEEPER</span><b aria-hidden="true">✦</b><span>FOLLOW YOUR CURIOSITY</span><b aria-hidden="true">✦</b><span>MAKE EVERY MOVE COUNT</span><b aria-hidden="true">✦</b><span>FIND YOUR NEXT GEM</span><b aria-hidden="true">✦</b><span>DIG A LITTLE DEEPER</span><b aria-hidden="true">✦</b></div>
     </div>
 
-    <section class="section-width discover section-padding" id="discover" aria-labelledby="discover-title">
+    <section class="section-width discover section-padding fade-section" id="discover" aria-labelledby="discover-title">
       <div class="section-heading">
         <div><p class="eyebrow">01 / BENEATH THE SURFACE</p><h2 id="discover-title">Simple idea.<br><em>Deeper possibilities.</em></h2></div>
         <p>Some treasures are worth a little trouble.<br>Carve your own path through Gemrift's caves,<br>where the next move is part of the adventure.</p>
@@ -71,7 +72,7 @@
       </div>
     </section>
 
-    <section class="character-section" id="characters" aria-labelledby="character-title">
+    <section class="character-section fade-section" id="characters" aria-labelledby="character-title">
       <div class="section-width character-layout">
         <div class="character-portrait">
           <span class="portrait-index">FIELD NOTES / THE EXPLORER</span>
@@ -82,7 +83,7 @@
       </div>
     </section>
 
-    <section class="section-width section-padding gameplay" id="gameplay" aria-labelledby="gameplay-title">
+    <section class="section-width section-padding gameplay fade-section" id="gameplay" aria-labelledby="gameplay-title">
       <div class="section-heading"><div><p class="eyebrow">03 / STRAIGHT FROM THE CAVES</p><h2 id="gameplay-title">Less talk.<br><em>More treasure.</em></h2></div><p>No cinematic sleight of hand.<br>Just a little explorer doing what they do best.<br>This is real Gemrift gameplay.</p></div>
       <div class="gameplay-grid">
         <button class="gameplay-main" type="button" data-watch aria-label="Watch Gemrift gameplay">
@@ -98,11 +99,13 @@
       </div>
     </section>
 
-    <section class="closing section-width"><img src="assets/gem.svg" alt="" width="48" height="52" loading="lazy"><p class="eyebrow">THERE'S SOMETHING GOOD DOWN HERE.</p><h2>Your next little<br><em>obsession awaits.</em></h2><p>Get to know the world of Gemrift, one gem at a time.</p><button class="button" type="button" data-watch>Explore the gameplay <span aria-hidden="true">↗</span></button><span class="release-note">For now, enjoy a look inside the caves. Release details to come.</span></section>
+    <section class="closing section-width fade-section"><div class="closing-gem-bg" aria-hidden="true"></div><img src="assets/gem.svg" alt="" width="48" height="52" loading="lazy"><p class="eyebrow">THERE'S SOMETHING GOOD DOWN HERE.</p><h2>Your next little<br><em>obsession awaits.</em></h2><p>Get to know the world of Gemrift, one gem at a time.</p><button class="button" type="button" data-watch>Explore the gameplay <span aria-hidden="true">↗</span></button><span class="release-note">For now, enjoy a look inside the caves. Release details to come.</span></section>
   </main>
   <footer class="site-footer section-width"><a class="wordmark" href="#" aria-label="Gemrift home"><img src="assets/gem.svg" width="24" height="26" alt="">gemrift<span class="wordmark-dot">.</span></a><p>A little game. A world of discovery.</p><a class="text-link" href="#main">Back to the surface <span aria-hidden="true">↑</span></a></footer>
 
-  <dialog id="gameplay-dialog" aria-labelledby="video-title">
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <dialog id="gameplay-dialog" aria-labelledby="video-title">
     <div class="dialog-heading"><h2 id="video-title">A glimpse beneath the surface</h2><button class="close-dialog" type="button" aria-label="Close gameplay video">×</button></div>
     <video controls playsinline preload="none" poster="assets/gameplay-cavern.jpg"><source src="assets/gemrift-gameplay.mp4" type="video/mp4">Your browser doesn't support embedded video. <a href="assets/gemrift-gameplay.mp4">Download the gameplay clip.</a></video>
     <p>An 18-second peek at Gemrift. Actual in-game footage.</p>
