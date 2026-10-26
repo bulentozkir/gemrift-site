@@ -3,112 +3,396 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Meet Gemrift: a little explorer, a world beneath your feet, and one more gem worth the risk. Discover the game, its characters, and real gameplay.">
+  <meta name="description" content="Meet Gemrift: join Milo Coppercap across 215 underground cave maps. Dig, collect gems, run, and push boulders! Try free for 7 days on the Microsoft Store.">
   <meta name="theme-color" content="#0b151c">
-  <meta property="og:title" content="Gemrift — A little deeper. A little braver.">
-  <meta property="og:description" content="Dig into a charming underground adventure. Collect gems, outsmart the rocks, and find your way through the rift.">
+  <meta property="og:title" content="Gemrift — Milo Coppercap &amp; 215 Cave Puzzle Maps">
+  <meta property="og:description" content="Dig into a charming underground adventure with Milo Coppercap. 215 cave maps, 5 difficulty tiers, cave creatures, and a 7-day free trial on Microsoft Store.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://bulentozkir.github.io/gemrift-site/assets/gameplay-cavern.jpg">
-  <title>Gemrift — A little deeper. A little braver.</title>
+  <title>Gemrift — Milo Coppercap &amp; 215 Underground Cave Maps</title>
   <link rel="icon" href="assets/gem.svg" type="image/svg+xml">
-    <link rel="preload" href="assets/gameplay-cavern.jpg" as="image">
-    <script>
-      (() => {
-        const param = new URLSearchParams(window.location.search).get("scoutTheme");
-        const theme = param === "light" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", theme);
-      })();
-    </script>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <link rel="preload" href="assets/gameplay-cavern.jpg" as="image">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="wordmark" href="#" aria-label="Gemrift home"><img src="assets/gem.svg" width="30" height="32" alt="">gemrift<span class="wordmark-dot">.</span></a>
     <nav aria-label="Main navigation">
-      <a href="#discover">The game</a>
-      <a href="#characters">The explorer</a>
+      <a href="#milo-stage">Milo Live</a>
+      <a href="#discover">The Game</a>
+      <a href="#characters">Characters</a>
+      <a href="#edition">215 Caves &amp; Trial</a>
       <a href="#gameplay">Gameplay</a>
     </nav>
     <div class="header-actions">
       <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><span aria-hidden="true">◐</span></button>
-      <a class="button button-small" href="#gameplay">Take a look <span aria-hidden="true">↗</span></a>
+      <a class="button button-small" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr"><span class="ms-icon" aria-hidden="true">⊞</span> Install App <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
   <main id="main">
+    <!-- TOP OF HOME PAGE: MILO COPPERCAP LIVE FUN ANIMATION STAGE -->
+    <section class="milo-playground section-width" id="milo-stage" aria-labelledby="milo-stage-title">
+      <div class="milo-stage-shell">
+        <div class="milo-stage-topbar">
+          <div class="milo-stage-identity">
+            <img class="milo-mini-avatar" src="assets/milo-coppercap-sprite.svg" width="38" height="38" alt="Milo Coppercap sprite">
+            <div>
+              <span class="milo-badge-label"><span class="status-dot"></span> MILO — COPPERCAP / LIVE CAVE PLAYGROUND</span>
+              <h2 id="milo-stage-title" class="milo-stage-heading">Digging, Collecting, Running &amp; Pushing — <em>Having Real Fun!</em></h2>
+            </div>
+          </div>
+          <div class="milo-live-telemetry" aria-live="polite">
+            <span class="telemetry-pill"><strong id="milo-action-readout">PARTY IN THE CAVE!</strong></span>
+            <span class="telemetry-pill telemetry-gems">♦ GEMS: <strong id="milo-gem-counter">0</strong></span>
+          </div>
+        </div>
+
+        <div class="milo-canvas-wrap">
+          <canvas id="milo-canvas" width="1140" height="270" aria-label="Animated Milo Coppercap happily digging earth, collecting sparkling gems, running across the cavern, and pushing heavy boulders"></canvas>
+        </div>
+
+        <div class="milo-stage-controls" role="toolbar" aria-label="Choose Milo Coppercap's cave action">
+          <span class="controls-prompt">Pick Milo's move or let him go wild:</span>
+          <div class="milo-btn-group">
+            <button type="button" class="milo-action-btn active" data-milo-mode="auto" aria-pressed="true">🎉 All-Out Fun Loop</button>
+            <button type="button" class="milo-action-btn" data-milo-mode="dig" aria-pressed="false">⛏️ Digging</button>
+            <button type="button" class="milo-action-btn" data-milo-mode="collect" aria-pressed="false">💎 Collecting</button>
+            <button type="button" class="milo-action-btn" data-milo-mode="run" aria-pressed="false">🏃 Running</button>
+            <button type="button" class="milo-action-btn" data-milo-mode="push" aria-pressed="false">🪨 Pushing</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="hero section-width" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="status-dot"></span> GEMRIFT / UNDERGROUND ADVENTURE</p>
+        <p class="eyebrow"><span class="status-dot"></span> GEMRIFT / 215 CAVE MAPS &bull; 7-DAY FREE TRIAL</p>
         <h1 id="hero-title">Dig deep.<br>Think fast.<br><em>Find your way.</em></h1>
-        <p class="hero-description">Stone above. Treasure below. Trouble one move away.<br class="desktop-break"> Descend into Gemrift's tile-built caves, collect the gems,<br class="desktop-break"> and stay one step ahead of the falling rocks.</p>
-        <div class="hero-actions">
-          <button class="button" type="button" data-watch><span class="play-icon" aria-hidden="true">▶</span> Watch gameplay <span aria-hidden="true">↗</span></button>
-          <a class="text-link" href="#discover">Discover the game <span aria-hidden="true">↓</span></a>
+        <p class="hero-description">Join <strong>Milo Coppercap</strong> underground where stone rests above, treasure glimmers below, and trouble is one move away. Carve through <strong>215 hand-crafted cave maps</strong>, outsmart cave creatures and falling boulders, and race to the exit portal.</p>
+        <div class="hero-pills">
+          <span class="hero-pill">✦ 7-Day Free Trial</span>
+          <span class="hero-pill">✦ Paid Full Version After Trial</span>
+          <span class="hero-pill">✦ 215 Cave Maps</span>
+          <span class="hero-pill">✦ 5 Difficulty Tiers</span>
         </div>
-        <div class="hero-footnote"><span class="tiny-gem" aria-hidden="true">◆</span> Real caves. Real gameplay. No cinematic stand-ins. <span class="hero-gems" aria-hidden="true">✦ ✦ ✦</span></div>
+        <div class="hero-actions">
+          <a class="button" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr"><span class="ms-icon" aria-hidden="true">⊞</span> Install from Microsoft Store <span aria-hidden="true">↗</span></a>
+          <button class="button button-outline" type="button" data-watch><span class="play-icon" aria-hidden="true">▶</span> Watch gameplay <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="hero-footnote"><span class="tiny-gem" aria-hidden="true">◆</span> Start with a 7-day free trial on Windows. Paid full edition unlocks all 215 caves &amp; walkthroughs. <span class="hero-gems" aria-hidden="true">✦ ✦ ✦</span></div>
       </div>
       <div class="hero-art">
-        <div class="cave-frame-heading"><span class="status-dot"></span><span>LIVE FROM THE UNDERGROUND</span><span>REC / 001</span></div>
-        <img class="cave-hero" src="assets/gameplay-cavern.jpg" alt="Actual Gemrift gameplay showing earth tiles, steel-blue stone walls, falling boulders, a glowing turquoise gem, and the original explorer" width="1024" height="768" fetchpriority="high">
+        <div class="cave-frame-heading"><span class="status-dot"></span><span>LIVE FROM THE UNDERGROUND</span><span>CAVE 001 / 215</span></div>
+        <img class="cave-hero" src="assets/gameplay-cavern.jpg" alt="Actual Gemrift gameplay showing earth tiles, steel-blue stone walls, falling boulders, a glowing turquoise gem, and Milo Coppercap" width="1024" height="768" fetchpriority="high">
         <div class="cave-frame-footer"><span><img src="assets/gem.svg" width="20" height="22" alt=""> ABRACADABRA CORNER</span><button type="button" data-watch aria-label="Play cave gameplay">▶ PLAY FOOTAGE</button></div>
       </div>
     </section>
 
-    <div class="ticker" aria-label="Explore. Collect. Think fast. Dig deeper.">
-          <div class="section-width ticker-inner"><span>FOLLOW YOUR CURIOSITY</span><b aria-hidden="true">✦</b><span>MAKE EVERY MOVE COUNT</span><b aria-hidden="true">✦</b><span>FIND YOUR NEXT GEM</span><b aria-hidden="true">✦</b><span>DIG A LITTLE DEEPER</span><b aria-hidden="true">✦</b><span>FOLLOW YOUR CURIOSITY</span><b aria-hidden="true">✦</b><span>MAKE EVERY MOVE COUNT</span><b aria-hidden="true">✦</b><span>FIND YOUR NEXT GEM</span><b aria-hidden="true">✦</b><span>DIG A LITTLE DEEPER</span><b aria-hidden="true">✦</b></div>
+    <div class="ticker" aria-label="Milo Coppercap. 215 Cave Maps. 7-Day Free Trial on Microsoft Store.">
+      <div class="section-width ticker-inner"><span>MEET MILO COPPERCAP</span><b aria-hidden="true">✦</b><span>215 HAND-CRAFTED CAVE MAPS</span><b aria-hidden="true">✦</b><span>7-DAY FREE TRIAL ON MICROSOFT STORE</span><b aria-hidden="true">✦</b><span>DIG &bull; COLLECT &bull; RUN &bull; PUSH</span><b aria-hidden="true">✦</b><span>MEET MILO COPPERCAP</span><b aria-hidden="true">✦</b><span>215 HAND-CRAFTED CAVE MAPS</span><b aria-hidden="true">✦</b><span>7-DAY FREE TRIAL ON MICROSOFT STORE</span><b aria-hidden="true">✦</b><span>DIG &bull; COLLECT &bull; RUN &bull; PUSH</span><b aria-hidden="true">✦</b></div>
     </div>
 
     <section class="section-width discover section-padding fade-section" id="discover" aria-labelledby="discover-title">
       <div class="section-heading">
-        <div><p class="eyebrow">01 / BENEATH THE SURFACE</p><h2 id="discover-title">Simple idea.<br><em>Deeper possibilities.</em></h2></div>
-        <p>Some treasures are worth a little trouble.<br>Carve your own path through Gemrift's caves,<br>where the next move is part of the adventure.</p>
+        <div><p class="eyebrow">01 / BENEATH THE SURFACE</p><h2 id="discover-title">Simple idea.<br><em>215 deeper possibilities.</em></h2></div>
+        <p>Every cave in Gemrift is a living puzzle box of earth, gravity, gems, and creatures.<br>Try the game free for 7 days, then unlock the paid full version to conquer all 215 caves.</p>
       </div>
       <div class="feature-grid">
-        <article class="feature-card"><span class="feature-number">01</span><div class="feature-icon" aria-hidden="true">◇</div><h3>Chase the sparkle</h3><p>Spot the gems. Plan your route. Turn a maze of earth and stone into your next great discovery.</p><span class="feature-tag">A LITTLE GREED IS GOOD</span></article>
-        <article class="feature-card"><span class="feature-number">02</span><div class="feature-icon" aria-hidden="true">↳</div><h3>Think before you dig</h3><p>Those rocks won't stay put forever. Read the cave and make every step work in your favor.</p><span class="feature-tag">WITS OVER BRUTE FORCE</span></article>
-        <article class="feature-card"><span class="feature-number">03</span><div class="feature-icon" aria-hidden="true">✳</div><h3>Find your way through</h3><p>From narrow passages to wide-open chambers, each cave is a fresh reason to keep exploring.</p><span class="feature-tag">JUST ONE MORE CAVE</span></article>
+        <article class="feature-card"><span class="feature-number">01</span><div class="feature-icon" aria-hidden="true">◇</div><h3>Chase the sparkle</h3><p>Spot the turquoise and gold gems, plan your route through the dirt, and hit the cave's gem quota to crack open the exit portal.</p><span class="feature-tag">COLLECT &amp; ESCAPE</span></article>
+        <article class="feature-card"><span class="feature-number">02</span><div class="feature-icon" aria-hidden="true">↳</div><h3>Master cave physics</h3><p>Unsupported boulders tumble and roll. Push heavy stones into place or drop them onto patrolling creatures to trigger chain reactions.</p><span class="feature-tag">WITS OVER BRUTE FORCE</span></article>
+        <article class="feature-card"><span class="feature-number">03</span><div class="feature-icon" aria-hidden="true">✳</div><h3>215 caves &amp; 5 tiers</h3><p>Progress from Junior to Distinguished timing tiers with built-in <em>"Show me resolution"</em> video walkthroughs whenever a puzzle stumps you.</p><span class="feature-tag">7-DAY FREE TRIAL + FULL EDITION</span></article>
       </div>
     </section>
 
     <section class="character-section fade-section" id="characters" aria-labelledby="character-title">
-      <div class="section-width character-layout">
-        <div class="character-portrait">
-          <span class="portrait-index">FIELD NOTES / THE EXPLORER</span>
-          <img src="assets/explorer-scene.jpg" alt="The original Gemrift explorer beside a glowing gem and falling boulders, captured directly from the game" width="850" height="500" loading="lazy">
-          <div class="sprite-detail"><img src="assets/explorer-ingame.png" width="520" height="760" alt="Close-up of the actual in-game explorer, with copper goggles and green clothing" loading="lazy"><span>ORIGINAL<br>IN-GAME EXPLORER</span></div>
+      <div class="section-width">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / MEET THE GAME CHARACTERS</p>
+            <h2 id="character-title">Milo Coppercap &amp;<br><em>the denizens of the rift.</em></h2>
+          </div>
+          <p>A cheerful cave tinkerer armed with a gem headlamp and a pickaxe,<br>sharing the underground with volatile beetles, prism moths, and biome guardians.</p>
         </div>
-        <div class="character-copy"><p class="eyebrow">02 / MEET THE EXPLORER</p><h2 id="character-title">Small explorer.<br>Heavy rocks.<br><em>Sharp instincts.</em></h2><p>Copper goggles. Green gear. A pickaxe at the ready. This is Gemrift's actual explorer, right where they belong: deep inside the cave.</p><p>Cut a path through the earth, keep an eye on the stones above, and follow the glimmer. Every move changes the way forward.</p><div class="character-traits"><span>Dig through earth</span><span>Collect gems</span><span>Watch the rocks</span></div><p class="artwork-note">All character images are extracted from actual gameplay. No redesigned mascots.</p></div>
+
+        <!-- HERO CHARACTER: MILO COPPERCAP -->
+        <div class="character-layout">
+          <div class="character-portrait">
+            <span class="portrait-index">HERO MINER / MILO COPPERCAP &mdash; "DIG SMART. SHINE BRIGHT."</span>
+            <div class="milo-portrait-grid">
+              <div class="milo-svg-showcase">
+                <img src="assets/milo-coppercap-portrait.svg" alt="Official vector portrait of Milo Coppercap wearing his copper helmet with a turquoise gem headlamp, bushy brown beard, teal tunic, and steel pickaxe" width="384" height="450" loading="lazy">
+              </div>
+              <div class="milo-ingame-showcase">
+                <img src="assets/explorer-scene.jpg" alt="Milo Coppercap inside an actual Gemrift cave beside a glowing turquoise gem and boulders" width="850" height="500" loading="lazy">
+                <img class="milo-poses-strip" src="assets/milo-poses.png" alt="Milo Coppercap in-game animation states: Idle, Walk, Dig, Push, Collect, Swim, Win, and Hurt" width="760" height="240" loading="lazy">
+              </div>
+            </div>
+            <div class="sprite-detail">
+              <img src="assets/milo-coppercap-sprite.svg" width="84" height="84" alt="Milo Coppercap compact game sprite" loading="lazy">
+              <img class="pixel-sprite" src="assets/explorer-ingame.png" width="58" height="84" alt="Close-up of the in-game explorer sprite" loading="lazy">
+              <span><strong>MILO COPPERCAP</strong><br>COPPER HELMET &bull; GEM HEADLAMP &bull; CURLED MUSTACHE &bull; PICKAXE</span>
+            </div>
+          </div>
+
+          <div class="character-copy">
+            <p class="eyebrow">PROTAGONIST / THE CAVE TINKERER</p>
+            <h3>Milo Coppercap</h3>
+            <p class="character-tagline">"Dig smart. Shine bright."</p>
+            <p>A warm-hearted cave tinkerer with a riveted copper helmet, a luminous turquoise gem headlamp, a curled brown mustache, teal miner shirt, and honey-gold harness straps. Milo pockets bright discoveries and trusts clever digging more than brute force.</p>
+            <p>Whether he is <strong>digging</strong> through packed earth with a two-burst soil chop, <strong>collecting</strong> faceted gems with a celebratory hop, <strong>running</strong> past tumbling rocks, or bracing his shoulder to <strong>push</strong> heavy boulders into a trap, Milo brings every cave to life.</p>
+            <div class="character-traits">
+              <span>⛏️ Digging Earth</span>
+              <span>💎 Collecting Gems</span>
+              <span>🏃 Running Paths</span>
+              <span>🪨 Pushing Boulders</span>
+              <span>🏊 Swimming Flooded Caves</span>
+              <span>🎉 Victory Celebrations</span>
+            </div>
+            <p class="artwork-note">Featuring Gemrift's official Milo Coppercap character art, procedural animation rig, and live in-game captures.</p>
+          </div>
+        </div>
+
+        <!-- CAVE CREATURES & BIOME DENIZENS -->
+        <div class="creatures-header">
+          <div>
+            <p class="eyebrow">UNDERGROUND BESTIARY / CAVE CREATURES &amp; HAZARDS</p>
+            <h3>Friends to outsmart. <em>Foes to turn into treasure.</em></h3>
+          </div>
+          <p>Every creature in Gemrift follows deterministic rules you can read at a glance—and many reward a well-timed boulder drop with a shower of bonus gems.</p>
+        </div>
+
+        <div class="creatures-grid">
+          <!-- 1. Firefly / Cinder Beetle -->
+          <article class="creature-card">
+            <div class="creature-card-top">
+              <div class="creature-art" aria-hidden="true">
+                <svg viewBox="0 0 96 96" width="76" height="76">
+                  <circle cx="48" cy="48" r="38" fill="#ff8a2a" opacity=".16"/>
+                  <path d="M36 22 C28 10, 20 14, 24 22 M60 22 C68 10, 76 14, 72 22" fill="none" stroke="#ffd36a" stroke-width="3" stroke-linecap="round"/>
+                  <ellipse cx="48" cy="50" rx="22" ry="26" fill="#2b1519" stroke="#172936" stroke-width="3"/>
+                  <ellipse cx="48" cy="52" rx="14" ry="18" fill="#ff8a2a"/>
+                  <ellipse cx="48" cy="52" rx="8" ry="11" fill="#ffd36a"/>
+                  <ellipse cx="48" cy="50" rx="4" ry="6" fill="#fffbe8"/>
+                  <path d="M48 26 L48 76 M26 44 L18 40 M26 56 L18 60 M70 44 L78 40 M70 56 L78 60 M48 76 L48 88" stroke="#172936" stroke-width="3.2" stroke-linecap="round"/>
+                  <circle cx="41" cy="28" r="3" fill="#fffbe8"/>
+                  <circle cx="55" cy="28" r="3" fill="#fffbe8"/>
+                </svg>
+              </div>
+              <span class="creature-badge">LEFT-WALL PATROL</span>
+            </div>
+            <h4>Cinder Beetle <span>(Firefly)</span></h4>
+            <p>Armored in a spiked dark shell with a pulsing ember core. It hugs the left wall of any passage and detonates in a fiery 3×3 blast on contact with Milo or a falling rock.</p>
+            <span class="creature-rule">⚡ Explosive hazard &bull; Keep your distance</span>
+          </article>
+
+          <!-- 2. Butterfly / Prism Moth -->
+          <article class="creature-card">
+            <div class="creature-card-top">
+              <div class="creature-art" aria-hidden="true">
+                <svg viewBox="0 0 96 96" width="76" height="76">
+                  <circle cx="48" cy="48" r="38" fill="#5be9c7" opacity=".15"/>
+                  <path d="M44 26 Q34 12 26 18 M52 26 Q62 12 70 18" fill="none" stroke="#5be9c7" stroke-width="2.6" stroke-linecap="round"/>
+                  <path d="M46 44 L16 24 L12 48 L30 60 Z" fill="#b9a1ff" stroke="#172936" stroke-width="2.8" stroke-linejoin="round"/>
+                  <path d="M50 44 L80 24 L84 48 L66 60 Z" fill="#b9a1ff" stroke="#172936" stroke-width="2.8" stroke-linejoin="round"/>
+                  <path d="M46 50 L22 58 L28 76 L44 66 Z" fill="#7f6ae0" stroke="#172936" stroke-width="2.8" stroke-linejoin="round"/>
+                  <path d="M50 50 L74 58 L68 76 L52 66 Z" fill="#7f6ae0" stroke="#172936" stroke-width="2.8" stroke-linejoin="round"/>
+                  <polygon points="28,36 36,42 26,48 20,40" fill="#5be9c7"/>
+                  <polygon points="68,36 60,42 70,48 76,40" fill="#5be9c7"/>
+                  <ellipse cx="48" cy="50" rx="5" ry="20" fill="#1d1220" stroke="#5be9c7" stroke-width="1.8"/>
+                </svg>
+              </div>
+              <span class="creature-badge">GEM BEARER</span>
+            </div>
+            <h4>Prism Moth <span>(Butterfly)</span></h4>
+            <p>Flutters along the right-hand wall on broad, gem-faceted violet and turquoise wings. Crush a Prism Moth beneath a falling boulder to crystallize the blast into collectible gems!</p>
+            <span class="creature-rule">💎 Drops a 3×3 cluster of gems when crushed</span>
+          </article>
+
+          <!-- 3. Living Amoeba & Magic Wall -->
+          <article class="creature-card">
+            <div class="creature-card-top">
+              <div class="creature-art" aria-hidden="true">
+                <svg viewBox="0 0 96 96" width="76" height="76">
+                  <circle cx="48" cy="48" r="38" fill="#4ade80" opacity=".14"/>
+                  <path d="M26 52 C18 36, 30 20, 46 24 C60 18, 78 30, 74 48 C80 64, 64 78, 48 72 C32 78, 18 66, 26 52 Z" fill="#2ea866" stroke="#172936" stroke-width="3"/>
+                  <circle cx="38" cy="42" r="7" fill="#7bf1a8" opacity=".8"/>
+                  <circle cx="58" cy="46" r="5" fill="#7bf1a8" opacity=".8"/>
+                  <circle cx="46" cy="58" r="6" fill="#a7f3d0" opacity=".85"/>
+                  <polygon points="68,18 78,28 68,38 58,28" fill="#c084fc" stroke="#172936" stroke-width="2.4"/>
+                </svg>
+              </div>
+              <span class="creature-badge">CAVE ALCHEMY</span>
+            </div>
+            <h4>Living Amoeba &amp; Magic Wall</h4>
+            <p>Green amoeba colonies slowly spread through open tiles—hem them in with boulders so they suffocate and crystallize into gems! Or drop stones through purple Magic Walls to transmute rock into treasure.</p>
+            <span class="creature-rule">🧪 Enclose amoebas to transform them into gems</span>
+          </article>
+
+          <!-- 4. Lantern Eel & Prism Ray -->
+          <article class="creature-card">
+            <div class="creature-card-top">
+              <div class="creature-art" aria-hidden="true">
+                <svg viewBox="0 0 96 96" width="76" height="76">
+                  <circle cx="48" cy="48" r="38" fill="#4da6ff" opacity=".15"/>
+                  <path d="M22 68 Q34 46 50 52 T76 30" fill="none" stroke="#172936" stroke-width="14" stroke-linecap="round"/>
+                  <path d="M22 68 Q34 46 50 52 T76 30" fill="none" stroke="#2f7ec4" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M68 24 Q56 12 46 20" fill="none" stroke="#69f0d0" stroke-width="2.6" stroke-linecap="round"/>
+                  <circle cx="44" cy="21" r="6" fill="#69f0d0"/>
+                  <circle cx="44" cy="21" r="3" fill="#fffbe8"/>
+                  <polygon points="62,56 78,48 84,64 68,72" fill="#f472b6" stroke="#172936" stroke-width="2.2"/>
+                </svg>
+              </div>
+              <span class="creature-badge">ABYSSAL BIOME</span>
+            </div>
+            <h4>Lantern Eel &amp; Prism Ray</h4>
+            <p>In flooded subterranean caverns, sinuous blue Lantern Eels sweep the dark with bioluminescent lures while diamond-winged Prism Rays glide by carrying pink dorsal gems.</p>
+            <span class="creature-rule">🌊 Aquatic wall-followers in underwater caves</span>
+          </article>
+
+          <!-- 5. Deep Octopus & Reef Shark -->
+          <article class="creature-card">
+            <div class="creature-card-top">
+              <div class="creature-art" aria-hidden="true">
+                <svg viewBox="0 0 96 96" width="76" height="76">
+                  <circle cx="48" cy="48" r="38" fill="#ff7a8c" opacity=".15"/>
+                  <path d="M30 52 C18 62, 16 74, 24 76 M38 56 C32 70, 34 80, 42 78 M58 56 C64 70, 62 80, 54 78 M66 52 C78 62, 80 74, 72 76" fill="none" stroke="#ff7a8c" stroke-width="5" stroke-linecap="round"/>
+                  <ellipse cx="48" cy="38" rx="20" ry="18" fill="#ff7a8c" stroke="#172936" stroke-width="3"/>
+                  <circle cx="40" cy="40" r="4.5" fill="#fff8df"/>
+                  <circle cx="56" cy="40" r="4.5" fill="#fff8df"/>
+                  <circle cx="40" cy="40" r="2.2" fill="#172936"/>
+                  <circle cx="56" cy="40" r="2.2" fill="#172936"/>
+                </svg>
+              </div>
+              <span class="creature-badge">TRENCH HUNTERS</span>
+            </div>
+            <h4>Deep Octopus &amp; Reef Shark</h4>
+            <p>Coral-hued Octopuses curl eight tapering arms along left-hand cavern walls, while streamlined blue Reef Sharks patrol right-hand currents and burst into gems when crushed.</p>
+            <span class="creature-rule">🦈 Crush Reef Sharks with boulders for bonus gems</span>
+          </article>
+
+          <!-- 6. Polar Bear & Snow Tiger -->
+          <article class="creature-card">
+            <div class="creature-card-top">
+              <div class="creature-art" aria-hidden="true">
+                <svg viewBox="0 0 96 96" width="76" height="76">
+                  <circle cx="48" cy="48" r="38" fill="#ffd18c" opacity=".15"/>
+                  <circle cx="30" cy="26" r="8" fill="#f6f1e4" stroke="#172936" stroke-width="2.8"/>
+                  <circle cx="66" cy="26" r="8" fill="#fff1cc" stroke="#172936" stroke-width="2.8"/>
+                  <ellipse cx="48" cy="50" rx="24" ry="22" fill="#fff1cc" stroke="#172936" stroke-width="3"/>
+                  <path d="M30 42 L40 44 M66 42 L56 44 M28 52 L38 52 M68 52 L58 52" stroke="#3b2618" stroke-width="3.2" stroke-linecap="round"/>
+                  <ellipse cx="48" cy="56" rx="9" ry="7" fill="#f6f1e4"/>
+                  <circle cx="40" cy="44" r="3" fill="#172936"/>
+                  <circle cx="56" cy="44" r="3" fill="#172936"/>
+                  <polygon points="44,53 52,53 48,58" fill="#172936"/>
+                </svg>
+              </div>
+              <span class="creature-badge">GLACIAL PATROL</span>
+            </div>
+            <h4>Polar Bear &amp; Snow Tiger</h4>
+            <p>Frost-cavern guardians with distinct patrol axes: heavy Polar Bears pace horizontally back and forth across icy corridors, while striped Snow Tigers prowl vertical shafts and drop gems when defeated.</p>
+            <span class="creature-rule">❄️ Horizontal &amp; vertical lane sentries</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: 7-DAY FREE TRIAL & PAID FULL VERSION WITH 215 CAVE MAPS -->
+    <section class="section-width section-padding edition-section fade-section" id="edition" aria-labelledby="edition-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 / MICROSOFT STORE EDITION &amp; TRIAL</p>
+          <h2 id="edition-title">7-day free trial.<br><em>215 caves in the full game.</em></h2>
+        </div>
+        <p>Download Gemrift directly from the Microsoft Store and jump straight into the caves.<br>Enjoy a full week of free exploration, then unlock the paid version to keep the adventure going forever.</p>
+      </div>
+
+      <div class="edition-grid">
+        <article class="edition-card edition-trial">
+          <span class="edition-pill">START FREE TODAY</span>
+          <h3>7-Day Free Trial</h3>
+          <p class="edition-lead">Experience Milo Coppercap's underground puzzle adventure on Windows 10 &amp; 11 with zero upfront cost.</p>
+          <ul class="edition-list">
+            <li><strong>7 full days of trial play</strong> installed cleanly via the Microsoft Store</li>
+            <li><strong>Instant access</strong> to authentic cave physics, creatures, and keyboard/gamepad controls</li>
+            <li><strong>Free preview walkthroughs</strong> (Levels 1–5) using the built-in <em>"Show me resolution"</em> player</li>
+            <li><strong>Automatic local save progress</strong> that carries straight into the paid edition</li>
+          </ul>
+          <a class="button button-outline" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr"><span class="ms-icon" aria-hidden="true">⊞</span> Start 7-Day Free Trial</a>
+        </article>
+
+        <article class="edition-card edition-full">
+          <span class="edition-pill edition-pill-accent">AVAILABLE AFTER 7-DAY TRIAL &bull; OR UNLOCK ANYTIME</span>
+          <h3>Paid Full Version &mdash; 215 Cave Maps</h3>
+          <p class="edition-lead">After your 7-day trial, upgrade to the paid full version to own the entire <strong>215-cave campaign</strong> permanently.</p>
+          <ul class="edition-list">
+            <li><strong>All 215 hand-crafted cave maps</strong> preserved and tuned for modern high-DPI displays</li>
+            <li><strong>5 timing-based difficulty tiers:</strong> <em>Junior</em> (1.55× time), <em>Senior</em> (1.30×), <em>Principal</em> (1.12×), <em>Expert</em> (1.00×), and <em>Distinguished</em> (0.90×)</li>
+            <li><strong>All 215 solution recordings unlocked:</strong> watch how any cave is solved after 2 attempts</li>
+            <li><strong>100% offline-friendly local play</strong> with no subscriptions, ads, or microtransactions</li>
+          </ul>
+          <a class="button" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr"><span class="ms-icon" aria-hidden="true">⊞</span> Get Gemrift on Microsoft Store <span aria-hidden="true">↗</span></a>
+        </article>
       </div>
     </section>
 
     <section class="section-width section-padding gameplay fade-section" id="gameplay" aria-labelledby="gameplay-title">
-      <div class="section-heading"><div><p class="eyebrow">03 / STRAIGHT FROM THE CAVES</p><h2 id="gameplay-title">Less talk.<br><em>More treasure.</em></h2></div><p>No cinematic sleight of hand.<br>Just a little explorer doing what they do best.<br>This is real Gemrift gameplay.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">04 / STRAIGHT FROM THE CAVES</p><h2 id="gameplay-title">Less talk.<br><em>More treasure.</em></h2></div><p>No cinematic sleight of hand.<br>Just Milo Coppercap doing what he does best across 215 caves.<br>This is real Gemrift gameplay.</p></div>
       <div class="gameplay-grid">
         <button class="gameplay-main" type="button" data-watch aria-label="Watch Gemrift gameplay">
-          <img src="assets/gameplay-cavern.jpg" alt="Actual Gemrift gameplay: an underground chamber with the explorer, rocks, and gems" width="1024" height="768" loading="lazy">
-          <span class="media-topline"><span>IN-GAME FOOTAGE</span><span>01 / 03</span></span>
+          <img src="assets/gameplay-cavern.jpg" alt="Actual Gemrift gameplay: an underground chamber with Milo Coppercap, rocks, and gems" width="1024" height="768" loading="lazy">
+          <span class="media-topline"><span>IN-GAME FOOTAGE &bull; 215 CAVES</span><span>01 / 03</span></span>
           <span class="big-play" aria-hidden="true">▶</span>
           <span class="media-bottom"><span><strong>One more gem. One more move.</strong><span>Step inside Abracadabra Corner</span></span><span class="media-arrow" aria-hidden="true">↗</span></span>
         </button>
         <div class="gameplay-side">
           <figure><img src="assets/gameplay-roost.jpg" alt="A different cave layout in Gemrift's Admirals Roost level" width="1024" height="768" loading="lazy"><figcaption><span>Admirals Roost</span><span>02 / 03</span></figcaption></figure>
-          <figure><img src="assets/gameplay-allotment.jpg" alt="The explorer navigating Gemrift's Airy Allotment cave" width="1024" height="768" loading="lazy"><figcaption><span>Airy Allotment</span><span>03 / 03</span></figcaption></figure>
+          <figure><img src="assets/gameplay-allotment.jpg" alt="Milo navigating Gemrift's Airy Allotment cave" width="1024" height="768" loading="lazy"><figcaption><span>Airy Allotment</span><span>03 / 03</span></figcaption></figure>
         </div>
       </div>
     </section>
 
-    <section class="closing section-width fade-section"><div class="closing-gem-bg" aria-hidden="true"></div><img src="assets/gem.svg" alt="" width="48" height="52" loading="lazy"><p class="eyebrow">THERE'S SOMETHING GOOD DOWN HERE.</p><h2>Your next little<br><em>obsession awaits.</em></h2><p>Get to know the world of Gemrift, one gem at a time.</p><div class="closing-actions"><button class="button" type="button" data-watch>Explore the gameplay <span aria-hidden="true">↗</span></button><a class="button button-outline" href="https://apps.microsoft.com/detail/9n5w4z3k2q1m?hl=en-us&gl=US" target="_blank" rel="noopener noreferrer"><span class="ms-icon" aria-hidden="true">⊞</span> Get it on Microsoft Store</a></div><span class="release-note">For now, enjoy a look inside the caves. Release details to come.</span></section>
+    <section class="closing section-width fade-section">
+      <div class="closing-gem-bg" aria-hidden="true"></div>
+      <img src="assets/gem.svg" alt="" width="48" height="52" loading="lazy">
+      <p class="eyebrow">215 CAVES DOWN HERE &bull; 7-DAY FREE TRIAL</p>
+      <h2>Ready to dig in with<br><em>Milo Coppercap?</em></h2>
+      <p>Try Gemrift free for 7 days on the Microsoft Store, then unlock the paid full version with all 215 cave maps.</p>
+      <div class="closing-actions">
+        <a class="button" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr"><span class="ms-icon" aria-hidden="true">⊞</span> Install from Microsoft Store <span aria-hidden="true">↗</span></a>
+        <button class="button button-outline" type="button" data-watch>Watch Gameplay Clip <span aria-hidden="true">▶</span></button>
+      </div>
+      <span class="release-note">Microsoft Store Direct Link: <code>ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr</code></span>
+    </section>
   </main>
-      <footer class="site-footer section-width"><a class="wordmark" href="#" aria-label="Gemrift home"><img src="assets/gem.svg" width="24" height="26" alt="">gemrift<span class="wordmark-dot">.</span></a><p>A little game. A world of discovery.</p><div class="footer-links"><a class="text-link" href="privacy.html">Privacy <span aria-hidden="true">↗</span></a><a class="text-link" href="copyright.html">Copyright <span aria-hidden="true">↗</span></a><a class="text-link" href="#main">Back to the surface <span aria-hidden="true">↑</span></a></div></footer>
 
-    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <footer class="site-footer section-width">
+    <a class="wordmark" href="#" aria-label="Gemrift home"><img src="assets/gem.svg" width="24" height="26" alt="">gemrift<span class="wordmark-dot">.</span></a>
+    <p>© 2026 Bulent Ozkir. Featuring Milo Coppercap &amp; 215 underground caves.</p>
+    <div class="footer-links">
+      <a class="text-link" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr">Microsoft Store <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href="privacy.html">Privacy <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href="copyright.html">Copyright <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href="#main">Back to the surface <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
 
-    <dialog id="gameplay-dialog" aria-labelledby="video-title">
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <dialog id="gameplay-dialog" aria-labelledby="video-title">
     <div class="dialog-heading"><h2 id="video-title">A glimpse beneath the surface</h2><button class="close-dialog" type="button" aria-label="Close gameplay video">×</button></div>
     <video controls playsinline preload="none" poster="assets/gameplay-cavern.jpg"><source src="assets/gemrift-gameplay.mp4" type="video/mp4">Your browser doesn't support embedded video. <a href="assets/gemrift-gameplay.mp4">Download the gameplay clip.</a></video>
-    <p>An 18-second peek at Gemrift. Actual in-game footage.</p>
+    <p>An 18-second peek at Gemrift. Actual in-game footage from the 215-cave campaign.</p>
     <p id="video-error" role="status" hidden>The video couldn't load. <a href="assets/gemrift-gameplay.mp4">Open the gameplay clip directly.</a></p>
   </dialog>
 </body>
