@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Meet Gemrift: a little explorer, a world beneath your feet, and one more gem worth the risk. Discover the game, its characters, and real gameplay.">
+  <meta name="theme-color" content="#f7f4ef">
+  <meta property="og:title" content="Gemrift — A little deeper. A little braver.">
+  <meta property="og:description" content="Dig into a charming underground adventure. Collect gems, outsmart the rocks, and find your way through the rift.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://bulentozkir.github.io/gemrift-site/assets/gameplay-cavern.jpg">
+  <title>Gemrift — A little deeper. A little braver.</title>
+  <link rel="icon" href="assets/gem.svg" type="image/svg+xml">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="Gemrift home"><img src="assets/gem.svg" width="30" height="32" alt="">gemrift<span class="wordmark-dot">.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#discover">The game</a>
+      <a href="#characters">The explorer</a>
+      <a href="#gameplay">Gameplay</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><span aria-hidden="true">◐</span></button>
+      <a class="button button-small" href="#gameplay">Take a look <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-width" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> SMALL EXPLORER. BIG ADVENTURE.</p>
+        <h1 id="hero-title">Good things<br>come to those<br>who <em>dig.</em></h1>
+        <p class="hero-description">A world beneath your feet. A pocket full of possibility.<br class="desktop-break"> Meet Gemrift, a little underground adventure with<br class="desktop-break"> a whole lot of heart.</p>
+        <div class="hero-actions">
+          <button class="button" type="button" data-watch><span class="play-icon" aria-hidden="true">▶</span> Watch gameplay <span aria-hidden="true">↗</span></button>
+          <a class="text-link" href="#discover">Discover the game <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-footnote"><span class="tiny-gem" aria-hidden="true">◆</span> A little curiosity goes a long way.</div>
+      </div>
+      <div class="hero-art">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <span class="art-coordinate">EXPEDITION / 001</span>
+        <div class="art-label label-top"><span aria-hidden="true">✦</span> Adventure is calling</div>
+        <img class="explorer-hero" src="assets/explorer.svg" alt="Illustration of a friendly Gemrift explorer wearing a mining helmet and oversized goggles, holding a glowing gemstone" width="620" height="700" fetchpriority="high">
+        <div class="art-label label-bottom"><img src="assets/gem.svg" width="24" height="26" alt=""> A gem of a discovery.</div>
+        <span class="art-caption">A LITTLE DEEPER. A LITTLE BRAVER.</span>
+        <span class="decor-spark spark-one" aria-hidden="true">✧</span><span class="decor-spark spark-two" aria-hidden="true">+</span>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Explore. Collect. Think fast. Dig deeper.">
+      <div class="section-width ticker-inner"><span>FOLLOW YOUR CURIOSITY</span><b aria-hidden="true">✦</b><span>MAKE EVERY MOVE COUNT</span><b aria-hidden="true">✦</b><span>FIND YOUR NEXT GEM</span><b aria-hidden="true">✦</b><span>DIG A LITTLE DEEPER</span><b aria-hidden="true">✦</b></div>
+    </div>
+
+    <section class="section-width discover section-padding" id="discover" aria-labelledby="discover-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 / BENEATH THE SURFACE</p><h2 id="discover-title">Simple idea.<br><em>Deeper possibilities.</em></h2></div>
+        <p>Some treasures are worth a little trouble.<br>Carve your own path through Gemrift's caves,<br>where the next move is part of the adventure.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card"><span class="feature-number">01</span><div class="feature-icon" aria-hidden="true">◇</div><h3>Chase the sparkle</h3><p>Spot the gems. Plan your route. Turn a maze of earth and stone into your next great discovery.</p><span class="feature-tag">A LITTLE GREED IS GOOD</span></article>
+        <article class="feature-card"><span class="feature-number">02</span><div class="feature-icon" aria-hidden="true">↳</div><h3>Think before you dig</h3><p>Those rocks won't stay put forever. Read the cave and make every step work in your favor.</p><span class="feature-tag">WITS OVER BRUTE FORCE</span></article>
+        <article class="feature-card"><span class="feature-number">03</span><div class="feature-icon" aria-hidden="true">✳</div><h3>Find your way through</h3><p>From narrow passages to wide-open chambers, each cave is a fresh reason to keep exploring.</p><span class="feature-tag">JUST ONE MORE CAVE</span></article>
+      </div>
+    </section>
+
+    <section class="character-section" id="characters" aria-labelledby="character-title">
+      <div class="section-width character-layout">
+        <div class="character-portrait">
+          <span class="portrait-index">FIELD NOTES / THE EXPLORER</span>
+          <img src="assets/explorer.svg" alt="Gemrift explorer character artwork with a pickaxe, sturdy boots, helmet, and a precious gem" width="620" height="700" loading="lazy">
+          <span class="portrait-stamp">READY TO<br>ROCK.</span>
+        </div>
+        <div class="character-copy"><p class="eyebrow">02 / SMALL BUT MIGHTY</p><h2>A brave heart.<br>A hard hat.<br><em>That's the spirit.</em></h2><p>Meet the little explorer at the heart of Gemrift. With trusty goggles, sturdy boots, and a nose for treasure, the only way is deeper.</p><p>No grand entrance. No oversized ego. Just you, the cave, and that irresistible glimmer around the corner.</p><div class="character-traits"><span>Endlessly curious</span><span>Gem enthusiast</span><span>Rock-ready</span></div><p class="artwork-note">Character illustration inspired by the in-game explorer.</p></div>
+      </div>
+    </section>
+
+    <section class="section-width section-padding gameplay" id="gameplay" aria-labelledby="gameplay-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / STRAIGHT FROM THE CAVES</p><h2 id="gameplay-title">Less talk.<br><em>More treasure.</em></h2></div><p>No cinematic sleight of hand.<br>Just a little explorer doing what they do best.<br>This is real Gemrift gameplay.</p></div>
+      <div class="gameplay-grid">
+        <button class="gameplay-main" type="button" data-watch aria-label="Watch Gemrift gameplay">
+          <img src="assets/gameplay-cavern.jpg" alt="Actual Gemrift gameplay: an underground chamber with the explorer, rocks, and gems" width="1024" height="768" loading="lazy">
+          <span class="media-topline"><span>IN-GAME FOOTAGE</span><span>01 / 03</span></span>
+          <span class="big-play" aria-hidden="true">▶</span>
+          <span class="media-bottom"><span><strong>One more gem. One more move.</strong><span>Step inside Abracadabra Corner</span></span><span class="media-arrow" aria-hidden="true">↗</span></span>
+        </button>
+        <div class="gameplay-side">
+          <figure><img src="assets/gameplay-roost.jpg" alt="A different cave layout in Gemrift's Admirals Roost level" width="1024" height="768" loading="lazy"><figcaption><span>Admirals Roost</span><span>02 / 03</span></figcaption></figure>
+          <figure><img src="assets/gameplay-allotment.jpg" alt="The explorer navigating Gemrift's Airy Allotment cave" width="1024" height="768" loading="lazy"><figcaption><span>Airy Allotment</span><span>03 / 03</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing section-width"><img src="assets/gem.svg" alt="" width="48" height="52" loading="lazy"><p class="eyebrow">THERE'S SOMETHING GOOD DOWN HERE.</p><h2>Your next little<br><em>obsession awaits.</em></h2><p>Get to know the world of Gemrift, one gem at a time.</p><button class="button" type="button" data-watch>Explore the gameplay <span aria-hidden="true">↗</span></button><span class="release-note">For now, enjoy a look inside the caves. Release details to come.</span></section>
+  </main>
+  <footer class="site-footer section-width"><a class="wordmark" href="#" aria-label="Gemrift home"><img src="assets/gem.svg" width="24" height="26" alt="">gemrift<span class="wordmark-dot">.</span></a><p>A little game. A world of discovery.</p><a class="text-link" href="#main">Back to the surface <span aria-hidden="true">↑</span></a></footer>
+
+  <dialog id="gameplay-dialog" aria-labelledby="video-title">
+    <div class="dialog-heading"><h2 id="video-title">A glimpse beneath the surface</h2><button class="close-dialog" type="button" aria-label="Close gameplay video">×</button></div>
+    <video controls playsinline preload="none" poster="assets/gameplay-cavern.jpg"><source src="assets/gemrift-gameplay.mp4" type="video/mp4">Your browser doesn't support embedded video. <a href="assets/gemrift-gameplay.mp4">Download the gameplay clip.</a></video>
+    <p>An 18-second peek at Gemrift. Actual in-game footage.</p>
+    <p id="video-error" role="status" hidden>The video couldn't load. <a href="assets/gemrift-gameplay.mp4">Open the gameplay clip directly.</a></p>
+  </dialog>
+</body>
+</html>
