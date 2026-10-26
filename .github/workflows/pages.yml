@@ -28,8 +28,9 @@ jobs:
       - name: Prepare public files
         run: |
           mkdir _site
-          cp *.html styles.css script.js _site/
+          cp *.html *.js *.json styles.css _site/
           cp -r assets _site/assets
+          cp -r i18n _site/i18n
           touch _site/.nojekyll
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
