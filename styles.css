@@ -155,10 +155,16 @@ figcaption span + span { color: var(--cp-text-soft); font-size: 9px; }
 .closing .eyebrow { margin-bottom: 20px; font-size: 9px; }
 .closing h2 { font-size: clamp(44px, 5vw, 68px); letter-spacing: -3px; }
 .closing > p:not(.eyebrow) { color: var(--cp-text-muted); font-size: 13px; margin: 24px 0 28px; }
+.closing-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+.button-outline { background: transparent; color: var(--cp-accent); border-color: var(--cp-accent); }
+.button-outline:hover { background: var(--cp-accent-soft); color: var(--cp-accent-hover); }
+.ms-icon { font-size: 18px; }
 .release-note { display: block; font-size: 10px; margin-top: 20px; color: var(--cp-text-soft); }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 80px; padding-block: 36px; border-top: 1px solid var(--cp-border); }
 .site-footer .wordmark { font-size: 26px; }
 .site-footer > p { font-size: 11px; color: var(--cp-text-soft); }
+.footer-links { display: flex; gap: 24px; align-items: center; }
+.footer-links .text-link { font-size: 11px; }
 dialog { max-width: 880px; width: calc(100% - 32px); border: 1px solid var(--cp-border); border-radius: 16px; padding: 24px; background: var(--cp-bg-elevated); color: var(--cp-text); box-shadow: var(--cp-shadow); }
 dialog::backdrop { background: var(--cp-overlay); backdrop-filter: blur(6px); }
 .dialog-heading { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 20px; }
