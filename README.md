@@ -1,7 +1,9 @@
 # Gemrift
 
-A responsive, dependency-free showcase for Gemrift, featuring original character
-illustrations, real gameplay screenshots, and a locally hosted gameplay video.
+A responsive, dependency-free showcase for Gemrift, featuring authentic in-game
+character captures, real gameplay screenshots, and a locally hosted gameplay video.
+The default dark cave theme uses the game's slate-blue stone, turquoise gems,
+and earth-toned footage rather than unrelated promotional artwork.
 
 ## Preview locally
 
@@ -23,12 +25,12 @@ The optimized preview and screenshots are included in `assets`.
 
 ## Content and accessibility
 
-- Character artwork is an original illustration inspired by the recorded explorer,
-  not a claim that additional playable characters exist.
+- Character images are captured from the recorded explorer, not redrawn mascots
+  or a claim that additional playable characters exist.
 - No download, store page, or release date is advertised until one is provided.
 - The video dialog supports keyboard dismissal and native playback controls.
 - Layouts adapt to mobile; animations respect reduced-motion preferences.
-- Light and dark themes follow system settings and can be switched in the header.
+- The cave-dark theme is the default; a lighter mineral theme is available in the header.
   For a fixed preview, append `?scoutTheme=light` or `?scoutTheme=dark`.
 - All imagery and media are local; the site uses no analytics, trackers, external
   font services, or third-party runtime dependencies.
