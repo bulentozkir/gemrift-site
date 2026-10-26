@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Gemrift Support — send a question, bug report, or feedback with an optional attachment.">
+  <meta data-i18n-attr="content:k142" name="description" content="Gemrift Support — send a question, bug report, or feedback with an optional attachment.">
   <meta name="theme-color" content="#0b151c">
-  <title>Gemrift — Support</title>
+  <title data-i18n="k144">Gemrift — Support</title>
   <link rel="icon" href="assets/gem.svg" type="image/svg+xml">
   <script>
     (() => {
@@ -16,34 +16,36 @@
     })();
   </script>
   <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
   <script src="script.js" defer></script>
   <script src="support.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a data-i18n="k024" class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="wordmark" href="index.html" aria-label="Gemrift home"><img src="assets/gem.svg" width="30" height="32" alt="">gemrift<span class="wordmark-dot">.</span></a>
-    <nav aria-label="Main navigation">
-      <a href="index.html#milo-stage">Milo in Action</a>
-      <a href="index.html#discover">The Game</a>
-      <a href="index.html#characters">Characters</a>
-      <a href="index.html#edition">215 Caves &amp; Trial</a>
-      <a href="index.html#gameplay">Gameplay</a>
-      <a href="support.html" aria-current="page">Support</a>
+    <a data-i18n-attr="aria-label:k004" class="wordmark" href="index.html" aria-label="Gemrift home"><img src="assets/gem.svg" width="30" height="32" alt="">gemrift<span class="wordmark-dot">.</span></a>
+    <nav data-i18n-attr="aria-label:k005" aria-label="Main navigation">
+      <a data-i18n="k145" href="index.html#milo-stage">Milo in Action</a>
+      <a data-i18n="k026" href="index.html#discover">The Game</a>
+      <a data-i18n="k027" href="index.html#characters">Characters</a>
+      <a data-i18n="k028" href="index.html#edition">215 Caves &amp; Trial</a>
+      <a data-i18n="k029" href="index.html#gameplay">Gameplay</a>
+      <a data-i18n="k030" href="support.html" aria-current="page">Support</a>
     </nav>
     <div class="header-actions">
-      <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><span aria-hidden="true">◐</span></button>
-      <a class="button button-small" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr"><span class="ms-icon" aria-hidden="true">⊞</span> Install App <span aria-hidden="true">↗</span></a>
+      <select class="lang-select" id="lang-select" aria-label="Language"></select>
+      <button data-i18n-attr="aria-label:k006,title:k006" class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><span aria-hidden="true">◐</span></button>
+      <a data-i18n="k031" class="button button-small" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr"><span class="ms-icon" aria-hidden="true">⊞</span> Install App <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
   <main id="main" class="legal-page section-width">
     <div class="legal-card">
-      <p class="eyebrow"><span class="status-dot"></span> SUPPORT</p>
-      <h1>Contact Support</h1>
-      <p class="legal-meta">Questions, bug reports, or feedback for Gemrift</p>
+      <p data-i18n="k146" class="eyebrow"><span class="status-dot"></span> SUPPORT</p>
+      <h1 data-i18n="k147">Contact Support</h1>
+      <p data-i18n="k148" class="legal-meta">Questions, bug reports, or feedback for Gemrift</p>
 
-      <p>Fill in the form and press <strong>Create email</strong>. Your default email client opens a ready-to-send message addressed to Bulent Ozkir with your details and the optional attachment (for example a screenshot or your <code>save.json</code>). Nothing is sent until you press Send in your email app, and nothing is uploaded to this website.</p>
+      <p data-i18n="k149">Fill in the form and press <strong>Create email</strong>. Your default email client opens a ready-to-send message addressed to Bulent Ozkir with your details and the optional attachment (for example a screenshot or your <code>save.json</code>). Nothing is sent until you press Send in your email app, and nothing is uploaded to this website.</p>
 
       <form id="support-form" class="support-form" novalidate>
         <label>Your name
@@ -54,15 +56,15 @@
         </label>
         <label>Topic
           <select name="topic">
-            <option>Bug report</option>
-            <option>Question</option>
-            <option>Feature request</option>
-            <option>Purchase / license</option>
-            <option>Other</option>
+            <option data-i18n="k150" value="Bug report">Bug report</option>
+            <option data-i18n="k151" value="Question">Question</option>
+            <option data-i18n="k152" value="Feature request">Feature request</option>
+            <option data-i18n="k153" value="Purchase / license">Purchase / license</option>
+            <option data-i18n="k154" value="Other">Other</option>
           </select>
         </label>
         <label>Game version / Windows version (optional)
-          <input type="text" name="env" placeholder="e.g. Gemrift 1.0, Windows 11 23H2">
+          <input data-i18n-attr="placeholder:k143" type="text" name="env" placeholder="e.g. Gemrift 1.0, Windows 11 23H2">
         </label>
         <label>Subject
           <input type="text" name="subject" required>
@@ -75,24 +77,24 @@
         </label>
         <p id="support-status" class="support-status" role="status" aria-live="polite"></p>
         <div class="legal-actions">
-          <button class="button" type="submit">Create email</button>
-          <a class="text-link" href="index.html">← Back to Gemrift Home</a>
+          <button data-i18n="k155" class="button" type="submit">Create email</button>
+          <a data-i18n="k156" class="text-link" href="index.html">← Back to Gemrift Home</a>
         </div>
       </form>
 
-      <p class="legal-meta">The email is generated as a draft file (<code>.eml</code>) because web pages cannot attach files through <code>mailto:</code> links. Open the downloaded file and your default mail app shows the draft. If it does not open, send the details to <a href="mailto:bulentozkir@hotmail.com">bulentozkir@hotmail.com</a>.</p>
+      <p data-i18n="k157" class="legal-meta">The email is generated as a draft file (<code>.eml</code>) because web pages cannot attach files through <code>mailto:</code> links. Open the downloaded file and your default mail app shows the draft. If it does not open, send the details to <a href="mailto:bulentozkir@hotmail.com">bulentozkir@hotmail.com</a>.</p>
     </div>
   </main>
 
   <footer class="site-footer section-width">
-    <a class="wordmark" href="index.html" aria-label="Gemrift home"><img src="assets/gem.svg" width="24" height="26" alt="">gemrift<span class="wordmark-dot">.</span></a>
-    <p>© 2026 Bulent Ozkir. Milo Coppercap &amp; 215 underground caves await.</p>
+    <a data-i18n-attr="aria-label:k004" class="wordmark" href="index.html" aria-label="Gemrift home"><img src="assets/gem.svg" width="24" height="26" alt="">gemrift<span class="wordmark-dot">.</span></a>
+    <p data-i18n="k158">© 2026 Bulent Ozkir. Milo Coppercap &amp; 215 underground caves await.</p>
     <div class="footer-links">
-      <a class="text-link" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr">Microsoft Store <span aria-hidden="true">↗</span></a>
-      <a class="text-link" href="support.html" aria-current="page">Support <span aria-hidden="true">↗</span></a>
-      <a class="text-link" href="privacy.html">Privacy <span aria-hidden="true">↗</span></a>
-      <a class="text-link" href="copyright.html">Copyright <span aria-hidden="true">↗</span></a>
-      <a class="text-link" href="index.html">Home <span aria-hidden="true">↑</span></a>
+      <a data-i18n="k133" class="text-link" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr">Microsoft Store <span aria-hidden="true">↗</span></a>
+      <a data-i18n="k134" class="text-link" href="support.html" aria-current="page">Support <span aria-hidden="true">↗</span></a>
+      <a data-i18n="k135" class="text-link" href="privacy.html">Privacy <span aria-hidden="true">↗</span></a>
+      <a data-i18n="k136" class="text-link" href="copyright.html">Copyright <span aria-hidden="true">↗</span></a>
+      <a data-i18n="k159" class="text-link" href="index.html">Home <span aria-hidden="true">↑</span></a>
     </div>
   </footer>
   <canvas id="particle-canvas" aria-hidden="true"></canvas>

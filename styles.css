@@ -69,6 +69,10 @@ nav { display: flex; gap: 36px; font-size: 13px; font-weight: 600; }
 nav a { padding-block: 12px; transition: color .2s; }
 nav a:hover, .text-link:hover { color: var(--cp-accent); }
 .header-actions { display: flex; align-items: center; gap: 16px; }
+.lang-select { max-width: 150px; height: 36px; border: 1px solid var(--cp-border); border-radius: 18px; background: transparent; color: inherit; font: inherit; font-size: 13px; padding: 0 10px; }
+.lang-select option { color: #111; background: #fff; }
+[dir="rtl"] body { text-align: start; }
+[dir="rtl"] .site-header, [dir="rtl"] .header-actions { direction: rtl; }
 .theme-toggle { border: 1px solid var(--cp-border); background: none; border-radius: 50%; width: 36px; height: 36px; font-size: 21px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 20px; min-height: 56px; border: 1px solid var(--cp-accent); border-radius: 4px; background: var(--cp-accent); color: var(--cp-accent-fg); padding: 16px 24px; font-size: 13px; font-weight: 750; transition: background .2s, transform .2s; }
 .button:hover { background: var(--cp-accent-hover); transform: translateY(-2px); }

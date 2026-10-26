@@ -99,17 +99,19 @@
 
     const file = document.getElementById("attachment").files[0] || null;
     if (file && file.size > MAX_BYTES) {
-      status.textContent = "The attachment is larger than 5 MB. Please choose a smaller file.";
+      status.textContent = tr("js.tooBig", "The attachment is larger than 5 MB. Please choose a smaller file.");
       return;
     }
 
     try {
       const fileBase64 = file ? bufferToBase64(await file.arrayBuffer()) : "";
       download(buildEml(data, file, fileBase64));
-      status.textContent =
-        "Draft downloaded. Open gemrift-support-request.eml to review and send it from your default email app.";
+      status.textContent = tr(
+        "js.downloaded",
+        "Draft downloaded. Open gemrift-support-request.eml to review and send it from your default email app."
+      );
     } catch (err) {
-      status.textContent = "Could not create the email draft. Please email " + TO_ADDR + " directly.";
+      status.textContent = tr("js.draftFail", "Could not create the email draft. Please email {email} directly.").replace("{email}", TO_ADDR);
     }
   });
 })();

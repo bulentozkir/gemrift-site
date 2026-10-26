@@ -1,11 +1,16 @@
 const themeToggle = document.querySelector(".theme-toggle");
 const dialog = document.querySelector("#gameplay-dialog");
+const tr = (key, fallback) => (window.gemriftT ? window.gemriftT(key, fallback) : fallback);
 
 function updateThemeLabel() {
   if (!themeToggle) return;
   const dark = document.documentElement.dataset.theme === "dark";
-  themeToggle.setAttribute("aria-label", `Switch to ${dark ? "light" : "dark"} theme`);
+  themeToggle.setAttribute(
+    "aria-label",
+    dark ? tr("js.themeLight", "Switch to light theme") : tr("js.themeDark", "Switch to dark theme")
+  );
 }
+document.addEventListener("gemrift:lang", updateThemeLabel);
 
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
@@ -177,24 +182,29 @@ if (miloCanvas) {
   }
 
   const READOUT_LABELS = {
-    dig: '⛏️ DIGGING EARTH — "DIG SMART! CHOP-CHOP!"',
-    collect: '💎 COLLECTING GEMS — "OOOH, SHINY TREASURE!"',
-    run: '🏃 RUNNING THE RIFT — "WHEEE! CATCH ME IF YOU CAN!"',
-    push: '🪨 PUSHING BOULDERS — "HEAVE-HO! ROLL IT!"',
+    dig: ["js.readout.dig", '⛏️ DIGGING EARTH — "DIG SMART! CHOP-CHOP!"'],
+    collect: ["js.readout.collect", '💎 COLLECTING GEMS — "OOOH, SHINY TREASURE!"'],
+    run: ["js.readout.run", '🏃 RUNNING THE RIFT — "WHEEE! CATCH ME IF YOU CAN!"'],
+    push: ["js.readout.push", '🪨 PUSHING BOULDERS — "HEAVE-HO! ROLL IT!"'],
   };
+
+  function renderReadout() {
+    if (!actionReadout) return;
+    const entry = READOUT_LABELS[currentAction] || READOUT_LABELS.dig;
+    actionReadout.textContent = tr(entry[0], entry[1]);
+  }
+  document.addEventListener("gemrift:lang", renderReadout);
 
   function setActionState(act, announcePopup = true) {
     currentAction = act;
     actionTimer = 0;
-    if (actionReadout) {
-      actionReadout.textContent = READOUT_LABELS[act] || READOUT_LABELS.dig;
-    }
+    renderReadout();
     if (announcePopup) {
       const shout =
-        act === "dig" ? "⛏️ DIG! DIG!" :
-        act === "collect" ? "💎 SHINY GEM!" :
-        act === "run" ? "🏃 ZOOMING!" :
-        "🪨 HEAVE-HO!";
+        act === "dig" ? tr("js.shout.dig", "⛏️ DIG! DIG!") :
+        act === "collect" ? tr("js.shout.collect", "💎 SHINY GEM!") :
+        act === "run" ? tr("js.shout.run", "🏃 ZOOMING!") :
+        tr("js.shout.push", "🪨 HEAVE-HO!");
       addPopup(shout, milo.x, milo.y - 92, "#ffd18c");
     }
   }
@@ -224,7 +234,7 @@ if (miloCanvas) {
     totalGems += 1;
     if (gemCounterEl) gemCounterEl.textContent = String(totalGems);
     spawnGemBurst(clickX, clickY, Math.random() > 0.5);
-    addPopup("🎉 HAVING REAL FUN! +1 ♦", clickX, clickY - 14, "#73efd0");
+    addPopup(tr("js.pop.fun", "🎉 HAVING REAL FUN! +1 ♦"), clickX, clickY - 14, "#73efd0");
   });
 
   function drawCaveBackdrop(time) {
@@ -701,7 +711,7 @@ if (miloCanvas) {
           if (target.hp <= 0) {
             target.hp = 0;
             milo.hopVy = -5.2;
-            addPopup("⛏️ EARTH CLEARED!", target.x, GROUND_Y - 64, "#ffd18c");
+            addPopup(tr("js.pop.earth", "⛏️ EARTH CLEARED!"), target.x, GROUND_Y - 64, "#ffd18c");
           }
         }
       }
@@ -721,7 +731,7 @@ if (miloCanvas) {
         milo.hopVy = -6.8;
         milo.joyTimer = 35;
         spawnGemBurst(target.x, target.y, target.hue === "gold");
-        addPopup("+1 GEM! ✨ YIPPEE!", target.x, target.y - 24, "#73efd0");
+        addPopup(tr("js.pop.gem", "+1 GEM! ✨ YIPPEE!"), target.x, target.y - 24, "#73efd0");
       }
     } else if (currentAction === "run") {
       milo.x += milo.facing * 5.6;
@@ -730,7 +740,7 @@ if (miloCanvas) {
       }
       if (Math.random() < 0.02 && milo.hopY === 0) {
         milo.hopVy = -5.5;
-        addPopup("🏃 WHEEE!", milo.x, GROUND_Y - 82, "#a0f4dd");
+        addPopup(tr("js.pop.wheee", "🏃 WHEEE!"), milo.x, GROUND_Y - 82, "#a0f4dd");
       }
       if (milo.x > W - 90) milo.facing = -1;
       if (milo.x < 90) milo.facing = 1;
@@ -742,7 +752,7 @@ if (miloCanvas) {
           totalGems += 1;
           if (gemCounterEl) gemCounterEl.textContent = String(totalGems);
           spawnGemBurst(g.x, g.y, g.hue === "gold");
-          addPopup("+1 GEM ON THE RUN!", g.x, g.y - 20, "#73efd0");
+          addPopup(tr("js.pop.gemRun", "+1 GEM ON THE RUN!"), g.x, g.y - 20, "#73efd0");
         }
       });
       if (gems.every((g) => g.collected)) {
@@ -766,7 +776,7 @@ if (miloCanvas) {
         }
         if (b.x < 220 || b.x > W - 160) {
           milo.hopVy = -5.5;
-          addPopup("🪨 BOULDER ROLLED!", b.x, GROUND_Y - 78, "#ffd18c");
+          addPopup(tr("js.pop.boulder", "🪨 BOULDER ROLLED!"), b.x, GROUND_Y - 78, "#ffd18c");
           b.x = b.x < 220 ? 880 : 260;
         }
       }

@@ -29,6 +29,9 @@ The optimized preview and screenshots are included in `assets`.
   or a claim that additional playable characters exist.
 - No download, store page, or release date is advertised until one is provided.
 - The video dialog supports keyboard dismissal and native playback controls.
+- The site is translated into the same 30 languages as the game. Strings live in
+  `i18n/<code>.json` (keys from `i18n/en.json`), languages in `languages.json`, and
+  pages use `data-i18n` attributes. Pick a language in the header or use `?lang=de`.
 - Layouts adapt to mobile; animations respect reduced-motion preferences.
 - The cave-dark theme is the default; a lighter mineral theme is available in the header.
   For a fixed preview, append `?scoutTheme=light` or `?scoutTheme=dark`.
