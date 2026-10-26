@@ -10,14 +10,16 @@ http://localhost:8080. No package installation or build step is needed.
 
 ## Publish on GitHub Pages
 
-1. Push the site to the `main` branch of `bulentozkir/gemrift-site`.
+1. Push the site to the `website` branch of `bulentozkir/gemrift-site`
+   (the workflow also supports `main`).
 2. In the repository's **Settings > Pages**, select **GitHub Actions** as the source.
 3. Run the **Deploy Gemrift to GitHub Pages** workflow, or push a new commit.
 4. The public site will be at https://bulentozkir.github.io/gemrift-site/.
 
 The workflow publishes only the HTML, CSS, JavaScript, and `assets` directory.
-Original recordings are excluded from Git and deployment; the optimized preview
-and screenshots are included in `assets`.
+The public `website` branch excludes the original recordings and their large
+history. The local `main` branch retains the existing recording commit untouched.
+The optimized preview and screenshots are included in `assets`.
 
 ## Content and accessibility
 
