@@ -155,10 +155,16 @@ figcaption span + span { color: var(--cp-text-soft); font-size: 9px; }
 .closing .eyebrow { margin-bottom: 20px; font-size: 9px; }
 .closing h2 { font-size: clamp(44px, 5vw, 68px); letter-spacing: -3px; }
 .closing > p:not(.eyebrow) { color: var(--cp-text-muted); font-size: 13px; margin: 24px 0 28px; }
+.closing-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+.button-outline { background: transparent; color: var(--cp-accent); border-color: var(--cp-accent); }
+.button-outline:hover { background: var(--cp-accent-soft); color: var(--cp-accent-hover); }
+.ms-icon { font-size: 18px; }
 .release-note { display: block; font-size: 10px; margin-top: 20px; color: var(--cp-text-soft); }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 80px; padding-block: 36px; border-top: 1px solid var(--cp-border); }
 .site-footer .wordmark { font-size: 26px; }
 .site-footer > p { font-size: 11px; color: var(--cp-text-soft); }
+.footer-links { display: flex; gap: 24px; align-items: center; }
+.footer-links .text-link { font-size: 11px; }
 dialog { max-width: 880px; width: calc(100% - 32px); border: 1px solid var(--cp-border); border-radius: 16px; padding: 24px; background: var(--cp-bg-elevated); color: var(--cp-text); box-shadow: var(--cp-shadow); }
 dialog::backdrop { background: var(--cp-overlay); backdrop-filter: blur(6px); }
 .dialog-heading { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 20px; }
@@ -184,6 +190,86 @@ dialog p a { text-decoration: underline; color: var(--cp-link); }
 /* Wordmark gem glow */
 .wordmark img { transition: filter .3s, transform .3s; }
 .wordmark:hover img { filter: drop-shadow(0 0 8px var(--cp-accent)); transform: scale(1.1) rotate(-8deg); }
+
+/* Top-of-page Milo Coppercap Live Cave Playground */
+.milo-playground { padding-top: 32px; }
+.milo-stage-shell { background: var(--cp-bg-elevated); border: 1px solid var(--cp-border-strong); border-radius: 12px; box-shadow: var(--cp-shadow); overflow: hidden; }
+.milo-stage-topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 24px; border-bottom: 1px solid var(--cp-border); background: var(--cp-surface); flex-wrap: wrap; }
+.milo-stage-identity { display: flex; align-items: center; gap: 16px; }
+.milo-mini-avatar { width: 46px; height: 46px; border-radius: 10px; background: var(--cp-accent-soft); border: 1px solid var(--cp-border-strong); padding: 3px; animation: miloAvatarBob 2.2s ease-in-out infinite; }
+@keyframes miloAvatarBob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-3px) rotate(3deg); } }
+.milo-badge-label { display: flex; align-items: center; gap: 8px; font-family: Consolas, "Courier New", monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.6px; color: var(--cp-text-soft); margin-bottom: 4px; }
+.milo-stage-heading { font-size: clamp(18px, 2.2vw, 24px); letter-spacing: -.6px; margin: 0; line-height: 1.2; }
+.milo-live-telemetry { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.telemetry-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--cp-border); background: var(--cp-bg-elevated); font-family: Consolas, "Courier New", monospace; font-size: 11px; letter-spacing: 1px; color: var(--cp-text-muted); }
+.telemetry-pill strong { color: var(--cp-accent); }
+.telemetry-gems { border-color: var(--cp-border-strong); background: var(--cp-accent-soft); }
+.milo-canvas-wrap { position: relative; width: 100%; background: var(--cp-bg); line-height: 0; }
+#milo-canvas { width: 100%; height: 260px; display: block; cursor: pointer; }
+.milo-stage-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 24px; border-top: 1px solid var(--cp-border); background: var(--cp-surface); flex-wrap: wrap; }
+.controls-prompt { font-size: 12px; font-weight: 600; color: var(--cp-text-muted); }
+.milo-btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.milo-action-btn { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--cp-border-strong); background: var(--cp-bg-elevated); color: var(--cp-text); font-size: 12px; font-weight: 700; transition: background .2s, border-color .2s, transform .15s, color .2s; }
+.milo-action-btn:hover { border-color: var(--cp-accent); transform: translateY(-1px); }
+.milo-action-btn.active { background: var(--cp-accent); color: var(--cp-accent-fg); border-color: var(--cp-accent); }
+
+/* Hero pills */
+.hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.hero-pill { border: 1px solid var(--cp-border-strong); background: var(--cp-accent-soft); color: var(--cp-accent); border-radius: 8px; padding: 6px 12px; font-size: 11px; font-weight: 700; letter-spacing: .4px; }
+
+/* Expanded Milo Character Showcase & Bestiary */
+.milo-portrait-grid { display: grid; grid-template-columns: .9fr 1.25fr; gap: 16px; padding: 0 20px 20px; align-items: stretch; }
+.milo-svg-showcase { background: var(--cp-bg-elevated); border: 1px solid var(--cp-border); border-radius: 8px; padding: 12px; display: grid; place-items: center; }
+.milo-svg-showcase img { width: 100%; max-width: 260px; height: auto; }
+.milo-ingame-showcase { display: flex; flex-direction: column; gap: 12px; }
+.milo-ingame-showcase > img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--cp-border); }
+.milo-poses-strip { background: var(--cp-bg); padding: 6px; }
+.sprite-detail img { width: 72px; height: 72px; border-radius: 8px; background: var(--cp-bg-elevated); border: 1px solid var(--cp-border-strong); padding: 4px; }
+.sprite-detail img.pixel-sprite { width: 56px; height: 72px; object-fit: contain; image-rendering: pixelated; }
+.character-copy h3 { font-size: 32px; margin-bottom: 6px; }
+.character-tagline { font-family: Consolas, "Courier New", monospace; font-size: 13px; font-weight: 700; color: var(--cp-accent) !important; margin: 0 0 18px !important; letter-spacing: 1px; }
+.character-copy > p:not(.eyebrow) { max-width: 480px; }
+
+.creatures-header { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin: 64px 0 32px; padding-top: 48px; border-top: 1px solid var(--cp-border); }
+.creatures-header .eyebrow { color: var(--cp-text-soft); margin: 0 0 12px; }
+.creatures-header h3 { font-size: clamp(26px, 3vw, 36px); margin: 0; letter-spacing: -1.2px; }
+.creatures-header > p { max-width: 440px; font-size: 13px; line-height: 1.8; color: var(--cp-text-muted); margin: 0; }
+.creatures-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.creature-card { padding: 24px; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 10px; display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s, border-color .25s, box-shadow .25s; }
+.creature-card:hover { transform: translateY(-4px); border-color: var(--cp-accent); box-shadow: var(--cp-shadow); }
+.creature-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.creature-art { width: 76px; height: 76px; border-radius: 12px; background: var(--cp-bg-elevated); border: 1px solid var(--cp-border); display: grid; place-items: center; transition: transform .3s; }
+.creature-card:hover .creature-art { transform: scale(1.07) rotate(-3deg); }
+.creature-badge { font-family: Consolas, "Courier New", monospace; font-size: 9px; font-weight: 700; letter-spacing: 1.2px; padding: 5px 9px; border-radius: 6px; background: var(--cp-accent-soft); color: var(--cp-accent); border: 1px solid var(--cp-border); }
+.creature-card h4 { font-size: 18px; margin: 0 0 10px; letter-spacing: -.4px; }
+.creature-card h4 span { font-size: 13px; font-weight: 500; color: var(--cp-text-soft); }
+.creature-card p { font-size: 13px; line-height: 1.75; color: var(--cp-text-muted); margin: 0 0 18px; }
+.creature-rule { font-family: Consolas, "Courier New", monospace; font-size: 10px; font-weight: 700; color: var(--cp-accent); padding-top: 12px; border-top: 1px solid var(--cp-border); }
+
+/* Edition & 7-Day Trial / 215 Caves Section */
+.edition-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 24px; align-items: stretch; }
+.edition-card { padding: 36px; border-radius: 12px; border: 1px solid var(--cp-border); background: var(--cp-bg-elevated); display: flex; flex-direction: column; justify-content: space-between; }
+.edition-full { border: 2px solid var(--cp-accent); background: var(--cp-surface); box-shadow: var(--cp-shadow); }
+.edition-pill { align-self: flex-start; font-family: Consolas, "Courier New", monospace; font-size: 10px; font-weight: 750; letter-spacing: 1.4px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--cp-border-strong); background: var(--cp-surface-soft); color: var(--cp-text); margin-bottom: 18px; }
+.edition-pill-accent { background: var(--cp-accent); color: var(--cp-accent-fg); border-color: var(--cp-accent); }
+.edition-card h3 { font-size: 28px; margin: 0 0 12px; letter-spacing: -.8px; }
+.edition-lead { font-size: 14px; line-height: 1.8; color: var(--cp-text-muted); margin: 0 0 20px; }
+.edition-list { margin: 0 0 28px; padding-left: 20px; display: grid; gap: 10px; font-size: 13px; line-height: 1.7; color: var(--cp-text-muted); }
+.edition-list strong { color: var(--cp-text); }
+.release-note code { font-family: Consolas, "Courier New", monospace; color: var(--cp-accent); }
+
+/* Legal Pages (Privacy & Copyright) */
+.legal-page { padding-block: 56px 88px; }
+.legal-card { max-width: 840px; margin: 0 auto; padding: 48px; border-radius: 12px; border: 1px solid var(--cp-border); background: var(--cp-bg-elevated); box-shadow: var(--cp-shadow); }
+.legal-card h1 { font-size: clamp(36px, 4vw, 52px); letter-spacing: -2px; margin: 12px 0 10px; }
+.legal-meta { font-family: Consolas, "Courier New", monospace; font-size: 11px; color: var(--cp-text-soft); margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid var(--cp-border); }
+.legal-card h2 { font-size: 20px; letter-spacing: -.5px; margin: 32px 0 12px; }
+.legal-card p, .legal-card li { font-size: 14px; line-height: 1.85; color: var(--cp-text-muted); }
+.legal-card ul { padding-left: 20px; margin: 0 0 16px; }
+.legal-card li { margin-bottom: 8px; }
+.legal-card a:not(.button):not(.text-link) { color: var(--cp-accent); text-decoration: underline; }
+.legal-card code { font-family: Consolas, "Courier New", monospace; font-size: 12px; padding: 2px 6px; border-radius: 4px; background: var(--cp-surface); border: 1px solid var(--cp-border); color: var(--cp-accent); }
+.legal-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--cp-border); }
 @media (min-width: 1600px) { .hero { min-height: 800px; } }
 @media (max-width: 1050px) {
   .section-width { width: calc(100% - 64px); }
@@ -196,6 +282,9 @@ dialog p a { text-decoration: underline; color: var(--cp-link); }
   .ticker-inner { font-size: 8px; gap: 12px; letter-spacing: 1px; }
   .ticker-inner > span:last-of-type, .ticker-inner > b:last-child { display: none; }
   .gameplay-grid { grid-template-columns: 1.4fr 1fr; }
+  .creatures-grid { grid-template-columns: repeat(2, 1fr); }
+  .edition-grid { grid-template-columns: 1fr; }
+  .milo-portrait-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
   .section-width { width: calc(100% - 40px); }
@@ -204,6 +293,12 @@ dialog p a { text-decoration: underline; color: var(--cp-link); }
   .site-header nav { display: none; }
   .header-actions { gap: 10px; }
   .button-small { padding: 10px 12px; gap: 12px; }
+  .milo-stage-topbar, .milo-stage-controls { padding: 14px 16px; }
+  #milo-canvas { height: 220px; }
+  .creatures-header { display: block; }
+  .creatures-header > p { margin-top: 12px; }
+  .creatures-grid { grid-template-columns: 1fr; }
+  .legal-card { padding: 28px 20px; }
   .hero { grid-template-columns: 1fr; gap: 40px; padding-block: 48px 32px; }
   h1 { font-size: clamp(64px, 12vw, 88px); letter-spacing: -4px; }
   .hero-description { font-size: 14px; }
