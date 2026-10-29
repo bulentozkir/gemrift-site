@@ -1,5 +1,6 @@
 const themeToggle = document.querySelector(".theme-toggle");
 const dialog = document.querySelector("#gameplay-dialog");
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 const tr = (key, fallback) => (window.gemriftT ? window.gemriftT(key, fallback) : fallback);
 
 function updateThemeLabel() {
@@ -9,6 +10,10 @@ function updateThemeLabel() {
     "aria-label",
     dark ? tr("js.themeLight", "Switch to light theme") : tr("js.themeDark", "Switch to dark theme")
   );
+  document.querySelector('meta[name="theme-color"]')?.setAttribute(
+    "content",
+    getComputedStyle(document.documentElement).getPropertyValue("--cp-bg").trim()
+  );
 }
 document.addEventListener("gemrift:lang", updateThemeLabel);
 
@@ -17,6 +22,7 @@ if (themeToggle) {
     document.documentElement.dataset.theme =
       document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     updateThemeLabel();
+    document.dispatchEvent(new CustomEvent("gemrift:theme"));
   });
   updateThemeLabel();
 }
@@ -111,10 +117,10 @@ if (miloCanvas) {
       { x: 745, hp: 1, maxHp: 1, seed: 4 },
     ];
     gems = [
-      { x: 280, y: GROUND_Y - 26, collected: false, hue: "turquoise", bobOffset: 0.2 },
-      { x: 495, y: GROUND_Y - 30, collected: false, hue: "gold", bobOffset: 1.4 },
-      { x: 605, y: GROUND_Y - 26, collected: false, hue: "turquoise", bobOffset: 2.6 },
-      { x: 840, y: GROUND_Y - 30, collected: false, hue: "gold", bobOffset: 3.8 },
+      { x: 280, y: GROUND_Y - 26, collected: false, bobOffset: 0.2 },
+      { x: 495, y: GROUND_Y - 30, collected: false, bobOffset: 1.4 },
+      { x: 605, y: GROUND_Y - 26, collected: false, bobOffset: 2.6 },
+      { x: 840, y: GROUND_Y - 30, collected: false, bobOffset: 3.8 },
     ];
     boulders = [
       { x: 920, r: 28, rot: 0, vx: 0 },
@@ -140,10 +146,8 @@ if (miloCanvas) {
     }
   }
 
-  function spawnGemBurst(x, y, isGold) {
-    const colors = isGold
-      ? ["#ffd18c", "#ffbf47", "#fff4cb", "#73efd0"]
-      : ["#73efd0", "#a0f4dd", "#fff4cb", "#ffd18c"];
+  function spawnGemBurst(x, y) {
+    const colors = ["#ffe16a", "#fffbe6", "#fff0a8", "#ffda5c"];
     for (let i = 0; i < 18; i++) {
       const angle = (Math.PI * 2 * i) / 18 + Math.random() * 0.3;
       const speed = 1.8 + Math.random() * 4.2;
@@ -222,6 +226,7 @@ if (miloCanvas) {
       } else {
         setActionState(mode, true);
       }
+      if (motionPreference.matches) restartMiloRendering();
     });
   });
 
@@ -233,8 +238,9 @@ if (miloCanvas) {
     milo.joyTimer = 45;
     totalGems += 1;
     if (gemCounterEl) gemCounterEl.textContent = String(totalGems);
-    spawnGemBurst(clickX, clickY, Math.random() > 0.5);
-    addPopup(tr("js.pop.fun", "🎉 HAVING REAL FUN! +1 ♦"), clickX, clickY - 14, "#73efd0");
+    spawnGemBurst(clickX, clickY);
+    addPopup(tr("js.pop.fun", "🎉 HAVING REAL FUN! +1 ♦"), clickX, clickY - 14, "#ffe16a");
+    if (motionPreference.matches) restartMiloRendering();
   });
 
   function drawCaveBackdrop(time) {
@@ -279,17 +285,20 @@ if (miloCanvas) {
       ctx.fill();
     }
 
-    // Steel-blue stone floor bricks (matching Gemrift cave walls)
-    ctx.fillStyle = "#1c3542";
+    ctx.fillStyle = "#0b1a24";
     ctx.fillRect(0, GROUND_Y, W, H - GROUND_Y);
-    ctx.fillStyle = "#2d5366";
-    ctx.fillRect(0, GROUND_Y, W, 6);
-
-    for (let bx = 0; bx < W; bx += 56) {
-      ctx.fillStyle = "#234252";
-      ctx.fillRect(bx + 4, GROUND_Y + 10, 48, 18);
-      ctx.fillStyle = "#19303c";
-      ctx.fillRect(bx + 20, GROUND_Y + 32, 48, 16);
+    for (let bx = 0; bx < W; bx += 54) {
+      ctx.fillStyle = "#2c4559";
+      ctx.fillRect(bx + 2, GROUND_Y + 2, 50, 50);
+      ctx.strokeStyle = "#dcefff";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(bx + 5, GROUND_Y + 5, 44, 44);
+      ctx.beginPath();
+      ctx.moveTo(bx + 14, GROUND_Y + 14);
+      ctx.lineTo(bx + 40, GROUND_Y + 40);
+      ctx.moveTo(bx + 40, GROUND_Y + 14);
+      ctx.lineTo(bx + 14, GROUND_Y + 40);
+      ctx.stroke();
     }
   }
 
@@ -332,42 +341,47 @@ if (miloCanvas) {
     const bob = Math.sin(time * 4.2 + gem.bobOffset) * 5;
     const x = gem.x;
     const y = gem.y + bob;
-    const isGold = gem.hue === "gold";
 
     ctx.save();
     ctx.translate(x, y);
 
     // Glow halo
     const glow = ctx.createRadialGradient(0, 0, 2, 0, 0, 26);
-    glow.addColorStop(0, isGold ? "rgba(255, 209, 140, 0.55)" : "rgba(115, 239, 208, 0.55)");
-    glow.addColorStop(1, "rgba(115, 239, 208, 0)");
+    glow.addColorStop(0, "rgba(255, 225, 106, 0.35)");
+    glow.addColorStop(1, "rgba(255, 225, 106, 0)");
     ctx.fillStyle = glow;
     ctx.beginPath();
     ctx.arc(0, 0, 26, 0, Math.PI * 2);
     ctx.fill();
 
     // Faceted diamond shape
-    ctx.fillStyle = isGold ? "#f9cd75" : "#69f0d0";
-    ctx.strokeStyle = "#172936";
+    ctx.fillStyle = "#ffe16a";
+    ctx.strokeStyle = "#0b1a24";
     ctx.lineWidth = 2.6;
     ctx.beginPath();
-    ctx.moveTo(0, -15);
-    ctx.lineTo(14, -3);
-    ctx.lineTo(0, 15);
-    ctx.lineTo(-14, -3);
+    ctx.moveTo(0, -18);
+    ctx.lineTo(13, 0);
+    ctx.lineTo(0, 18);
+    ctx.lineTo(-13, 0);
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
 
-    // Inner bright facet
-    ctx.fillStyle = "#fff4cb";
+    ctx.fillStyle = "#fffbe6";
     ctx.beginPath();
-    ctx.moveTo(0, -10);
-    ctx.lineTo(7, -3);
-    ctx.lineTo(0, 6);
-    ctx.lineTo(-7, -3);
+    ctx.moveTo(0, -16);
+    ctx.lineTo(12, -1);
+    ctx.lineTo(-12, -1);
     ctx.closePath();
     ctx.fill();
+    ctx.strokeStyle = "#4a350a";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(-12, 0);
+    ctx.lineTo(12, 0);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, 16);
+    ctx.stroke();
     ctx.restore();
   }
 
@@ -376,33 +390,37 @@ if (miloCanvas) {
     ctx.translate(b.x, GROUND_Y - b.r);
     ctx.rotate(b.rot);
 
-    // Heavy slate cave boulder
-    ctx.fillStyle = "#567280";
-    ctx.strokeStyle = "#172936";
+    ctx.fillStyle = "#3d4b59";
+    ctx.strokeStyle = "#0b1a24";
     ctx.lineWidth = 3.2;
     ctx.beginPath();
-    ctx.arc(0, 0, b.r, 0, Math.PI * 2);
+    ctx.moveTo(-b.r * 0.95, -b.r * 0.3);
+    ctx.lineTo(-b.r * 0.6, -b.r * 0.8);
+    ctx.lineTo(b.r * 0.6, -b.r * 0.75);
+    ctx.lineTo(b.r, b.r * 0.4);
+    ctx.lineTo(b.r * 0.2, b.r * 0.8);
+    ctx.lineTo(-b.r * 0.9, b.r * 0.6);
+    ctx.closePath();
     ctx.fill();
     ctx.stroke();
 
-    // Top-left rim highlight & bottom-right shade
-    ctx.fillStyle = "#7e9ca8";
+    ctx.fillStyle = "#52616f";
     ctx.beginPath();
-    ctx.arc(-7, -8, b.r * 0.55, 0, Math.PI * 2);
+    ctx.moveTo(-b.r * 0.6, -b.r * 0.7);
+    ctx.lineTo(0, -b.r * 0.65);
+    ctx.lineTo(-b.r * 0.3, b.r * 0.5);
+    ctx.lineTo(-b.r * 0.8, b.r * 0.5);
+    ctx.closePath();
     ctx.fill();
 
-    ctx.fillStyle = "#3c5460";
+    ctx.strokeStyle = "#c5d1dc";
+    ctx.lineWidth = 3;
     ctx.beginPath();
-    ctx.arc(8, 9, b.r * 0.35, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Facet crack line
-    ctx.strokeStyle = "#2b3e47";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(-8, 4);
-    ctx.lineTo(2, 10);
-    ctx.lineTo(11, 5);
+    ctx.moveTo(-7, -16);
+    ctx.lineTo(0, -3);
+    ctx.lineTo(-8, 14);
+    ctx.moveTo(0, -3);
+    ctx.lineTo(13, -10);
     ctx.stroke();
 
     ctx.restore();
@@ -667,11 +685,12 @@ if (miloCanvas) {
   }
 
   let lastTime = performance.now();
+  let miloFrame = null;
 
   function updateAndRender(now) {
-    const dt = Math.min(0.05, (now - lastTime) / 1000);
+    const dt = motionPreference.matches ? 0 : Math.min(0.05, (now - lastTime) / 1000);
     lastTime = now;
-    const t = now / 1000;
+    const t = motionPreference.matches ? 0 : now / 1000;
 
     actionTimer += dt;
     if (milo.joyTimer > 0) milo.joyTimer--;
@@ -730,7 +749,7 @@ if (miloCanvas) {
         if (gemCounterEl) gemCounterEl.textContent = String(totalGems);
         milo.hopVy = -6.8;
         milo.joyTimer = 35;
-        spawnGemBurst(target.x, target.y, target.hue === "gold");
+        spawnGemBurst(target.x, target.y);
         addPopup(tr("js.pop.gem", "+1 GEM! ✨ YIPPEE!"), target.x, target.y - 24, "#73efd0");
       }
     } else if (currentAction === "run") {
@@ -751,7 +770,7 @@ if (miloCanvas) {
           g.collected = true;
           totalGems += 1;
           if (gemCounterEl) gemCounterEl.textContent = String(totalGems);
-          spawnGemBurst(g.x, g.y, g.hue === "gold");
+          spawnGemBurst(g.x, g.y);
           addPopup(tr("js.pop.gemRun", "+1 GEM ON THE RUN!"), g.x, g.y - 20, "#73efd0");
         }
       });
@@ -835,11 +854,23 @@ if (miloCanvas) {
       ctx.restore();
     }
 
-    requestAnimationFrame(updateAndRender);
+    miloFrame = motionPreference.matches ? null : requestAnimationFrame(updateAndRender);
   }
 
+  function restartMiloRendering() {
+    if (miloFrame !== null) cancelAnimationFrame(miloFrame);
+    lastTime = performance.now();
+    updateAndRender(lastTime);
+  }
+
+  motionPreference.addEventListener("change", restartMiloRendering);
+  for (const event of ["gemrift:lang", "gemrift:theme"]) {
+    document.addEventListener(event, () => {
+      if (motionPreference.matches) restartMiloRendering();
+    });
+  }
   setActionState("dig", false);
-  requestAnimationFrame(updateAndRender);
+  restartMiloRendering();
 }
 
 /* Scroll-triggered fade-in */
@@ -882,7 +913,7 @@ if (canvas) {
         speedY: Math.random() * 0.4 + 0.1,
         opacity: Math.random() * 0.5 + 0.1,
         isGem: Math.random() < 0.15,
-        gemHue: Math.random() * 60 + 160,
+        gemHue: Math.random() * 12 + 43,
       });
     }
   }
@@ -890,6 +921,7 @@ if (canvas) {
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (motionPreference.matches) return;
     const dark = isDark();
     particles.forEach((p) => {
       p.x += p.speedX;
@@ -927,13 +959,11 @@ if (canvas) {
   }
   draw();
 
-  /* Recreate particles on theme switch */
-  const origToggle = themeToggle.click;
-  themeToggle.addEventListener("click", () => {
-    setTimeout(() => {
-      cancelAnimationFrame(animId);
-      createParticles(80);
-      draw();
-    }, 50);
-  }, true);
+  function restartParticles() {
+    cancelAnimationFrame(animId);
+    createParticles(80);
+    draw();
+  }
+  document.addEventListener("gemrift:theme", restartParticles);
+  motionPreference.addEventListener("change", restartParticles);
 }

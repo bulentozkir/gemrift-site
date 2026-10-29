@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta data-i18n-attr="content:k142" name="description" content="Gemrift Support — send a question, bug report, or feedback with an optional attachment.">
-  <meta name="theme-color" content="#0b151c">
+  <meta name="theme-color" content="#0b1a24">
   <title data-i18n="k144">Gemrift — Support</title>
   <link rel="icon" href="assets/gem.svg" type="image/svg+xml">
   <script>
     (() => {
       const param = new URLSearchParams(window.location.search).get("scoutTheme");
-      const theme =
-        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const theme = param === "light" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", theme);
     })();
   </script>
@@ -35,7 +34,7 @@
     <div class="header-actions">
       <select class="lang-select" id="lang-select" aria-label="Language"></select>
       <button data-i18n-attr="aria-label:k006,title:k006" class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><span aria-hidden="true">◐</span></button>
-      <a data-i18n="k031" class="button button-small" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr"><span class="ms-icon" aria-hidden="true">⊞</span> Install App <span aria-hidden="true">↗</span></a>
+      <a data-i18n="k031" class="button button-small" href="https://apps.microsoft.com/detail/9p3qhcnq5sl3?hl=en-US&amp;gl=US"><span class="ms-icon" aria-hidden="true">⊞</span> Install App <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
@@ -90,7 +89,7 @@
     <a data-i18n-attr="aria-label:k004" class="wordmark" href="index.html" aria-label="Gemrift home"><img src="assets/gem.svg" width="24" height="26" alt="">gemrift<span class="wordmark-dot">.</span></a>
     <p data-i18n="k158">© 2026 Bulent Ozkir. Milo Coppercap &amp; 215 underground caves await.</p>
     <div class="footer-links">
-      <a data-i18n="k133" class="text-link" href="ms-windows-store://pdp/?productid=9NV32H65BHMP&amp;cid=PCCongratsBnr">Microsoft Store <span aria-hidden="true">↗</span></a>
+      <a data-i18n="k133" class="text-link" href="https://apps.microsoft.com/detail/9p3qhcnq5sl3?hl=en-US&amp;gl=US">Microsoft Store <span aria-hidden="true">↗</span></a>
       <a data-i18n="k134" class="text-link" href="support.html" aria-current="page">Support <span aria-hidden="true">↗</span></a>
       <a data-i18n="k135" class="text-link" href="privacy.html">Privacy <span aria-hidden="true">↗</span></a>
       <a data-i18n="k136" class="text-link" href="copyright.html">Copyright <span aria-hidden="true">↗</span></a>
