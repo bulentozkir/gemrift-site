@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bulentozkir.github.io/gemrift-site/sitemap.xml
