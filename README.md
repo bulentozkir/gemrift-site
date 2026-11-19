@@ -45,6 +45,13 @@ The public `website` branch excludes the original recordings and their large
 history. The local `main` branch retains the existing recording commit untouched.
 The optimized preview and screenshots are included in `assets`.
 
+## Search and sharing
+
+The site publishes `robots.txt` and `sitemap.xml` from the repository root.
+When the public Pages URL or set of published pages changes, update the sitemap,
+robots sitemap URL, and canonical and social URLs in the HTML head. The home
+page also includes Schema.org `VideoGame` data for search engines.
+
 ## Content and accessibility
 
 - Character images are captured from the recorded explorer, not redrawn mascots
