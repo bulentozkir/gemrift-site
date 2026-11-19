@@ -56,18 +56,33 @@ http://localhost:8080. No package installation or build step is needed.
 3. Run the **Deploy Gemrift to GitHub Pages** workflow, or push a new commit.
 4. The public site will be at https://bulentozkir.github.io/gemrift-site/.
 
-The workflow publishes only the HTML, CSS, JavaScript, `i18n`, SEO metadata
-(`robots.txt`, `sitemap.xml`), and `assets` directory. Earlier external MP4
-solution recordings were retired when Gemrift switched to bundled, offline
-in-engine JSON resolution playback. The optimized gameplay clip and authentic
-captures are included in `assets`.
+The workflow publishes only the HTML (including `404.html`), CSS, JavaScript,
+`i18n`, web app manifest (`site.webmanifest`), SEO metadata (`robots.txt`,
+`sitemap.xml`), and `assets` directory. Earlier external MP4 solution recordings
+were retired when Gemrift switched to bundled, offline in-engine JSON resolution
+playback. The optimized gameplay clip and authentic captures are included in
+`assets`.
 
 ## Search and sharing
 
-The site publishes `robots.txt` and `sitemap.xml` from the repository root.
-When the public Pages URL or set of published pages changes, update the sitemap,
-robots sitemap URL, and canonical and social URLs in the HTML head. The home
-page also includes Schema.org `VideoGame` data for search engines.
+The site publishes `robots.txt`, `sitemap.xml`, `site.webmanifest`, and a
+`noindex` `404.html` from the repository root:
+
+- **Multilingual indexing (`hreflang`):** All four indexable pages declare
+  `<link rel="alternate" hreflang="...">` for all 30 supported languages plus
+  `x-default`, `i18n.js` maintains self-referencing canonicals and `og:locale`
+  for `?lang=<code>` URLs, and `sitemap.xml` lists all 120 localized URLs along
+  with Google Image and Video sitemap extensions.
+- **Structured data & rich previews:** `index.html` publishes a Schema.org
+  `@graph` (`WebSite`, `Person`, `VideoGame` / `SoftwareApplication`,
+  `VideoObject`, and `FAQPage`), while `support.html`, `privacy.html`, and
+  `copyright.html` publish `ContactPage` / `WebPage` and `BreadcrumbList`
+  schemas alongside full Open Graph, Twitter Card, and 48×48 / 180×180 /
+  192×192 / 512×512 / SVG icons.
+
+When the public Pages URL or set of published pages changes, update
+`sitemap.xml`, `robots.txt`, and the canonical, `hreflang`, and social URLs in
+the HTML head.
 
 ## Content and accessibility
 
