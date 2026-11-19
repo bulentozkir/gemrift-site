@@ -244,7 +244,7 @@ dialog p a { text-decoration: underline; color: var(--cp-link); }
 .milo-ingame-showcase > img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--cp-border); }
 .milo-poses-strip { background: var(--cp-bg); padding: 6px; }
 .sprite-detail img { width: 72px; height: 72px; border-radius: 8px; background: var(--cp-bg-elevated); border: 1px solid var(--cp-border-strong); padding: 4px; }
-.sprite-detail img.pixel-sprite { width: 56px; height: 72px; object-fit: contain; image-rendering: pixelated; }
+.sprite-detail img.pixel-sprite { width: 56px; height: 72px; object-fit: contain; image-rendering: auto; }
 .character-copy h3 { font-size: 32px; margin-bottom: 6px; }
 .character-tagline { font-family: Consolas, "Courier New", monospace; font-size: 13px; font-weight: 700; color: var(--cp-accent) !important; margin: 0 0 18px !important; letter-spacing: 1px; }
 .character-copy > p:not(.eyebrow) { max-width: 480px; }

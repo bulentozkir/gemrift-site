@@ -347,40 +347,61 @@ if (miloCanvas) {
 
     // Glow halo
     const glow = ctx.createRadialGradient(0, 0, 2, 0, 0, 26);
-    glow.addColorStop(0, "rgba(255, 225, 106, 0.35)");
+    glow.addColorStop(0, "rgba(255, 225, 106, 0.38)");
     glow.addColorStop(1, "rgba(255, 225, 106, 0)");
     ctx.fillStyle = glow;
     ctx.beginPath();
     ctx.arc(0, 0, 26, 0, Math.PI * 2);
     ctx.fill();
 
-    // Faceted diamond shape
-    ctx.fillStyle = "#ffe16a";
-    ctx.strokeStyle = "#0b1a24";
-    ctx.lineWidth = 2.6;
+    // Brilliant-cut gold crystal matching GemCut.cs (flat table, 6-facet crown, 4-facet pavilion)
+    const pts = [
+      [-6.5, -18], [0, -18], [6.5, -18],
+      [-14, -5.5], [-7, -5.5], [0, -5.5], [7, -5.5], [14, -5.5],
+      [0, 18],
+    ];
+    const facets = [
+      [3, 0, 4, "#fffbe6"],
+      [0, 1, 4, "#fffbe6"],
+      [1, 5, 4, "#fff0a8"],
+      [1, 6, 5, "#ffe98a"],
+      [1, 2, 6, "#fff4bc"],
+      [2, 7, 6, "#ffe16a"],
+      [3, 4, 8, "#fff0a8"],
+      [4, 5, 8, "#ffe57a"],
+      [5, 6, 8, "#ffe16a"],
+      [6, 7, 8, "#ffda5c"],
+    ];
+    for (const [a, b, c, color] of facets) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(pts[a][0], pts[a][1]);
+      ctx.lineTo(pts[b][0], pts[b][1]);
+      ctx.lineTo(pts[c][0], pts[c][1]);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    ctx.strokeStyle = "rgba(74, 53, 10, 0.55)";
+    ctx.lineWidth = 1.1;
     ctx.beginPath();
-    ctx.moveTo(0, -18);
-    ctx.lineTo(13, 0);
-    ctx.lineTo(0, 18);
-    ctx.lineTo(-13, 0);
-    ctx.closePath();
-    ctx.fill();
+    ctx.moveTo(-14, -5.5); ctx.lineTo(14, -5.5);
+    ctx.moveTo(-6.5, -18); ctx.lineTo(-7, -5.5); ctx.lineTo(0, 18);
+    ctx.lineTo(7, -5.5); ctx.lineTo(6.5, -18);
+    ctx.moveTo(-7, -5.5); ctx.lineTo(0, -18); ctx.lineTo(7, -5.5);
+    ctx.moveTo(0, -18); ctx.lineTo(0, 18);
     ctx.stroke();
 
-    ctx.fillStyle = "#fffbe6";
+    ctx.strokeStyle = "#0b1a24";
+    ctx.lineWidth = 2.4;
+    ctx.lineJoin = "round";
     ctx.beginPath();
-    ctx.moveTo(0, -16);
-    ctx.lineTo(12, -1);
-    ctx.lineTo(-12, -1);
+    ctx.moveTo(-6.5, -18);
+    ctx.lineTo(6.5, -18);
+    ctx.lineTo(14, -5.5);
+    ctx.lineTo(0, 18);
+    ctx.lineTo(-14, -5.5);
     ctx.closePath();
-    ctx.fill();
-    ctx.strokeStyle = "#4a350a";
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(-12, 0);
-    ctx.lineTo(12, 0);
-    ctx.moveTo(0, 0);
-    ctx.lineTo(0, 16);
     ctx.stroke();
     ctx.restore();
   }

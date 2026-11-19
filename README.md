@@ -2,26 +2,42 @@
 
 A responsive, dependency-free showcase for Gemrift, featuring authentic in-game
 character captures, real gameplay screenshots, and a locally hosted gameplay video.
-Current gameplay leads the page: gold crystals, cracked slate boulders, X-braced
-steel walls, embossed controls, and large, boxed HUD statistics. The page uses
-the game's navy cave floor, slate steel, copper earth, and gold crystal palette.
+Current gameplay leads the page: brilliant-cut gold crystals, cracked slate
+boulders, X-braced steel walls, embossed toolbar controls, and a unified raised
+HUD display box for gems, time, and score. The page uses the game's navy cave
+floor, slate steel, copper earth, and gold crystal palette.
 
 ## Current game experience
 
-- The 18-second Hasty Allotment Plaza trailer is current Windows gameplay,
-  with sound. Screenshots and the mini-map/HUD close-up are authentic game captures.
-- Junior is the default of five timing-only difficulty levels. Difficulty does
-  not change cave layouts or enemy populations.
+- The 18-second Hasty Allotment Plaza trailer is Windows gameplay with sound.
+  Screenshots, the Milo pose strip, and the mini-map/HUD close-up are authentic
+  captures from the current Godot 4.7.2 .NET build.
+- The opening title screen provides a top-left 30-language selector, a 5-gem
+  difficulty slider, and a *"Show me the game play"* demo alongside *Start game*.
+- Junior is the default of five difficulty levels (`Junior`, `Senior`,
+  `Principal`, `Expert`, `Distinguished`). Difficulty does not change cave
+  layouts or enemy populations; at `Junior` and `Senior` the exit opens at the
+  cave's gem quota, while from `Principal` up the exit requires every collectible
+  gem in the cave (`diamondsRequiredMax`).
 - The clock is relaxed by default: zero removes the remaining-time bonus, not
-  the attempt. Strict clock is optional.
+  the attempt. Strict clock is optional. Meeting the gem goal drops a green
+  *Quota met* notice at the top of the cave view; fresh cave entries reveal
+  cell-by-cell over two seconds while retries start immediately.
 - Hold V to scout with play and the clock paused. The full-cave mini map can be
   hidden with Ctrl+X and restored with Ctrl+Z.
-- Settings offers high contrast, reduced motion, sound captions, volume, and
-  remappable controls. Attempts are unlimited; the death banner names the retry key.
-- Solution previews for caves 1–5 are free. Nine failures unlock that cave's
-  recording for everyone; a full Microsoft Store license and two failures on
-  the same cave unlock recordings across the campaign. Recordings download on
-  demand and are not yet available for every cave.
+- Settings is organized into four tabs (`Game`, `Sound`, `Graphics`, `Controls`)
+  with high contrast, reduced motion, grid-line intensity (`G`), miner cell box
+  (`B`), sound captions, volume, and remappable controls and menu shortcuts.
+  Attempts are unlimited; the death banner names the retry key.
+- Live room resolutions (*"Show me resolution"* bulb) play verified step-by-step
+  JSON replays directly on the cave board completely offline across all 215 caves
+  and all five difficulties—with pause/resume, `1×`/`2×`/`4×`/`8×` speed, replay,
+  and Esc close (no external MP4 downloads or video cache). Caves 1–20 are free
+  immediately; from cave 21 onward, 19 failures on a cave unlock that cave's
+  resolution for everyone on every platform, while an active full Microsoft Store
+  license and 2 failures on one cave unlock resolutions across the entire campaign.
+- Windows releases ship native `x64` and `ARM64` packages in the Microsoft Store
+  bundle, with single-instance window activation.
 
 Gameplay and accessibility explanations reuse the game's localized Help in all
 30 site languages. Recheck these against the game when its behavior changes.
@@ -40,10 +56,11 @@ http://localhost:8080. No package installation or build step is needed.
 3. Run the **Deploy Gemrift to GitHub Pages** workflow, or push a new commit.
 4. The public site will be at https://bulentozkir.github.io/gemrift-site/.
 
-The workflow publishes only the HTML, CSS, JavaScript, and `assets` directory.
-The public `website` branch excludes the original recordings and their large
-history. The local `main` branch retains the existing recording commit untouched.
-The optimized preview and screenshots are included in `assets`.
+The workflow publishes only the HTML, CSS, JavaScript, `i18n`, SEO metadata
+(`robots.txt`, `sitemap.xml`), and `assets` directory. Earlier external MP4
+solution recordings were retired when Gemrift switched to bundled, offline
+in-engine JSON resolution playback. The optimized gameplay clip and authentic
+captures are included in `assets`.
 
 ## Search and sharing
 

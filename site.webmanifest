@@ -1,0 +1,34 @@
+{
+  "name": "Gemrift — Milo Coppercap Cave Puzzle Adventure",
+  "short_name": "Gemrift",
+  "description": "Join Milo Coppercap across 215 hand-crafted underground cave puzzle maps on Windows 10 & 11.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1a24",
+  "theme_color": "#0b1a24",
+  "lang": "en",
+  "categories": ["games", "puzzle", "entertainment"],
+  "icons": [
+    {
+      "src": "assets/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/gemrift-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/gem.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
